@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::prefix('questionario/')->name('questionario.')->group( function(){
+    Route::get('/{id_questionario}', 'QuestionarioController@index')->name('index');
 });
