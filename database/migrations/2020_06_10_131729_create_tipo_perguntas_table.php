@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePerguntasTable extends Migration
+class CreateTipoPerguntasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreatePerguntasTable extends Migration
      */
     public function up()
     {
-        Schema::create('perguntas', function (Blueprint $table) {
+        Schema::create('tipo_perguntas', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('ds_pergunta');
-            
-            $table->integer('tipo_pergunta_id')->unsigned();
-            $table->foreign('tipo_pergunta_id')->references('id')->on('tipo_perguntas');
-            
+            $table->string('ds_tipo_pergunta')->unique();
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -33,6 +30,6 @@ class CreatePerguntasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perguntas');
+        Schema::dropIfExists('tipo_perguntas');
     }
 }

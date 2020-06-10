@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\PerguntaOpcao;
 
 class PerguntaOpcaoSeeder extends Seeder
 {
@@ -12,6 +13,21 @@ class PerguntaOpcaoSeeder extends Seeder
     public function run()
     {
         $opcoes = [
+            /**
+             * Perguntas comuns a todos os questionários
+             * =========================================================
+             */
+            [
+                'pergunta_id' => '1',
+                'ds_pergunta_opcao' => 'Sim',
+                'next_pergunta_id' => '3'
+            ],
+            [
+                'pergunta_id' => '1',
+                'ds_pergunta_opcao' => 'Não',
+                'next_pergunta_id' => '3'
+            ],
+
             /**
              * Perguntas para demissão sem justa causa
              * =========================================================
@@ -275,17 +291,17 @@ class PerguntaOpcaoSeeder extends Seeder
             [
                 'pergunta_id' => '18',
                 'ds_pergunta_opcao' => 'Sim',
-                'next_pergunta_id' => ''
+                'next_pergunta_id' => '2'
             ],
             [
                 'pergunta_id' => '18',
                 'ds_pergunta_opcao' => 'Não',
-                'next_pergunta_id' => ''
+                'next_pergunta_id' => '2'
             ],
             [
                 'pergunta_id' => '18',
                 'ds_pergunta_opcao' => 'Não Sei',
-                'next_pergunta_id' => ''
+                'next_pergunta_id' => '2'
             ],
             
             /**
@@ -459,5 +475,9 @@ class PerguntaOpcaoSeeder extends Seeder
                 'next_pergunta_id' => '2'
             ]
         ];
+    
+        foreach ($opcoes as $opcao) {
+            PerguntaOpcao::create($opcao);
+        }
     }
 }
