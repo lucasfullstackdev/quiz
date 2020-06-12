@@ -8,4 +8,5 @@ class PerguntaOpcao extends Model
 {
     protected $table = 'pergunta_opcoes';
     protected $fillable = ['pergunta_id', 'ds_pergunta_opcao', 'next_pergunta_id'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 }

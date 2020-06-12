@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Services\QuestionarioService;
 
 class QuestionarioController extends Controller
 {
@@ -13,7 +14,7 @@ class QuestionarioController extends Controller
      */
     public function index()
     {
-        return view('pages.teste');
+        
     }
 
     /**
@@ -45,7 +46,11 @@ class QuestionarioController extends Controller
      */
     public function show($id)
     {
-        //
+        $questionario = QuestionarioService::find($id);
+
+        return view('pages.teste', [
+            'questionario' => $questionario
+        ]);
     }
 
     /**

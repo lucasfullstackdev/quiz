@@ -9,16 +9,10 @@
     <link rel="stylesheet" href="{{ url(mix('css/bootstrap.css')) }}">
 </head>
 <body>
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <button class="btn btn-danger btn-block">here</button>
-            </div>
-        </div>
-    </div>
     
     <script src="{{ url(mix('js/jquery.js')) }}"></script>
     <script src="{{ url(mix('js/bootstrap.js')) }}"></script>
+    
+    @stack('scripts')
 </body>
 </html>

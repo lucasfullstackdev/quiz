@@ -6,14 +6,17 @@ use Illuminate\View\Component;
 
 class TextForm extends Component
 {
+
+    public $perguntaCollection;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($perguntaCollection)
     {
-        //
+        $this->perguntaCollection = $perguntaCollection;
     }
 
     /**
