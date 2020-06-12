@@ -25,7 +25,7 @@ class CreateHistoricoRespostasTable extends Migration
             $table->integer('pergunta_opcao_id')->unsigned()->nullable();
             $table->foreign('pergunta_opcao_id')->references('id')->on('pergunta_opcoes');
 
-            $table->text('vl_pergunta');
+            $table->text('vl_pergunta')->nullable();
 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

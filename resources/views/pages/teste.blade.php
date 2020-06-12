@@ -2,22 +2,61 @@
 
 @section('title', 'Questionário')
 
-@isset($questionario)
-    @foreach ($questionario as $pergunta)
-        <x-text-form :perguntaCollection="$pergunta" />
-    @endforeach
-@endisset
+@section('content')
+    @isset($questionario)
+        @foreach ($questionario as $pergunta)
+            {{-- @php
+                dd(
+                    response()->json($pergunta)
+                );
+            @endphp --}}
+            <x-text-form :perguntaCollection="$pergunta" />
+        @endforeach
+    @endisset
+@endsection
 
 @push('scripts')
     <script type="text/javascript">
         $(document).ready( function(){
-            $('button').on('click', ev => {
-                let tst = $(ev.currentTarget).data().target;
+            let questionarioSize = @json($questionario).length;
+            let dataToSubmit = [];
 
-                $(`#${tst} .card`).addClass('bg-danger');
-                console.log(tst);
-                console.log($(`#${tst}`));
+            const showNextView = (current, next) => {
+                let currentView = $(`#${current}`).find('.card');
+                let nextView = $(`#${next}`).find('.card');
+
+                currentView.fadeOut("slow", () => {
+                    currentView.toggleClass('d-none'); 
+                    nextView.toggleClass('d-none'); 
+                });
+            };
+
+            const controlView = ev => {
+                let currentTarget = $(ev.currentTarget);
+                let currentView = currentTarget.data().current;
+                let nextView = currentTarget.data().next;
+
+                showNextView(currentView, nextView);
+            };
+
+            const prepDataToSubmit = ev => {
+                let currentTarget = $(ev.currentTarget).data();
+                
+                if (dataToSubmit.length == questionarioSize - 2)
+                    console.log('now');
+
+                dataToSubmit.push({
+                    questionario_id: currentTarget.questionario_id,
+                    pergunta_id: currentTarget.pergunta_id,
+                    opcao_id: currentTarget.opcao_id
+                });
+            };
+
+            $('button').on('click', ev => {
+                controlView(ev);
+                prepDataToSubmit(ev);
             });
+
         });
     </script>    
 @endpush

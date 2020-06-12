@@ -21,6 +21,9 @@ class CreatePerguntasTable extends Migration
             $table->integer('tipo_pergunta_id')->unsigned();
             $table->foreign('tipo_pergunta_id')->references('id')->on('tipo_perguntas');
             
+            $table->boolean('sn_primeiro')->default(false);
+            $table->boolean('sn_ultimo')->default(false);
+
             $table->timestamps();
             $table->softDeletes();
         });

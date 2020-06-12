@@ -13,17 +13,12 @@ class PerguntaSeeder extends Seeder
     public function run()
     {
         $perguntas = [
-            // Pergunas comuns a todos os questionários
+            // Perguntas para demissão sem justa causa
             [
                 'ds_pergunta' => 'Você saiu do trabalho há mais de 02 anos?',
-                'tipo_pergunta_id' => 2
+                'tipo_pergunta_id' => 2,
+                'sn_primeiro' => true
             ],
-            [
-                'ds_pergunta' => 'Descreva melhor sua situação no campo abaixo:',
-                'tipo_pergunta_id' => 1
-            ],
-
-            // Perguntas para demissão sem justa causa
             [
                 'ds_pergunta' => 'Sua carteira de trabalho era assinada?',
                 'tipo_pergunta_id' => 2
@@ -88,23 +83,58 @@ class PerguntaSeeder extends Seeder
                 'ds_pergunta' => 'Tinha intervalo mínimo de 1 hora para almoço?',
                 'tipo_pergunta_id' => 2
             ],
+            [
+                'ds_pergunta' => 'Descreva melhor sua situação no campo abaixo:',
+                'tipo_pergunta_id' => 1,
+                'sn_ultimo' => true
+            ],
 
             // Perguntas para demissão por justa causa
+            [
+                'ds_pergunta' => 'Você saiu do trabalho há mais de 02 anos?',
+                'tipo_pergunta_id' => 2,
+                'sn_primeiro' => true
+            ],
             [
                 'ds_pergunta' => 'Selecione entre as alternativas abaixo o motivo da demissão:',
                 'tipo_pergunta_id' => 2
             ],
+            [
+                'ds_pergunta' => 'Descreva melhor sua situação no campo abaixo:',
+                'tipo_pergunta_id' => 1,
+                'sn_ultimo' => true
+            ],
 
             // Perguntas para Acidente no trabalho
+            [
+                'ds_pergunta' => 'Você saiu do trabalho há mais de 02 anos?',
+                'tipo_pergunta_id' => 2,
+                'sn_primeiro' => true
+            ],
             [
                 'ds_pergunta' => 'Marque as situações que ocorreram com você:',
                 'tipo_pergunta_id' => 3
             ],
+            [
+                'ds_pergunta' => 'Descreva melhor sua situação no campo abaixo:',
+                'tipo_pergunta_id' => 1,
+                'sn_ultimo' => true
+            ],
 
             // Perguntas para Assédio Moral
             [
+                'ds_pergunta' => 'Você saiu do trabalho há mais de 02 anos?',
+                'tipo_pergunta_id' => 2,
+                'sn_primeiro' => true
+            ],
+            [
                 'ds_pergunta' => 'Marque as situações que ocorreram com você:',
                 'tipo_pergunta_id' => 3
+            ],
+            [
+                'ds_pergunta' => 'Descreva melhor sua situação no campo abaixo:',
+                'tipo_pergunta_id' => 1,
+                'sn_ultimo' => true
             ]
         ];
 

@@ -18,6 +18,7 @@ class QuestionarioPerguntaSeeder extends Seeder
              * =========================================================================================
              */
             ['questionario_id' => 1, 'pergunta_id' => 1],
+            ['questionario_id' => 1, 'pergunta_id' => 2],
             ['questionario_id' => 1, 'pergunta_id' => 3],
             ['questionario_id' => 1, 'pergunta_id' => 4],
             ['questionario_id' => 1, 'pergunta_id' => 5],
@@ -34,31 +35,30 @@ class QuestionarioPerguntaSeeder extends Seeder
             ['questionario_id' => 1, 'pergunta_id' => 16],
             ['questionario_id' => 1, 'pergunta_id' => 17],
             ['questionario_id' => 1, 'pergunta_id' => 18],
-            ['questionario_id' => 1, 'pergunta_id' => 2],
 
             /**
              * Perguntas referentes ao segundo questionário [Demissão por justa causa]
              * =========================================================================================
              */
-            ['questionario_id' => 2, 'pergunta_id' => 1],
             ['questionario_id' => 2, 'pergunta_id' => 19],
-            ['questionario_id' => 2, 'pergunta_id' => 2],
+            ['questionario_id' => 2, 'pergunta_id' => 20],
+            ['questionario_id' => 2, 'pergunta_id' => 21],
             
             /**
              * Perguntas referentes ao terceiro questionário [Acidente no trabalho]
              * =========================================================================================
              */
-            ['questionario_id' => 3, 'pergunta_id' => 1],
-            ['questionario_id' => 3, 'pergunta_id' => 20],
-            ['questionario_id' => 3, 'pergunta_id' => 2],
+            ['questionario_id' => 3, 'pergunta_id' => 22],
+            ['questionario_id' => 3, 'pergunta_id' => 23],
+            ['questionario_id' => 3, 'pergunta_id' => 24],
 
             /**
              * Perguntas referentes ao quarto questionário [Assédio Moral]
              * =========================================================================================
              */
-            ['questionario_id' => 4, 'pergunta_id' => 1],
-            ['questionario_id' => 4, 'pergunta_id' => 21],
-            ['questionario_id' => 4, 'pergunta_id' => 2]
+            ['questionario_id' => 4, 'pergunta_id' => 25],
+            ['questionario_id' => 4, 'pergunta_id' => 26],
+            ['questionario_id' => 4, 'pergunta_id' => 27]
         ];
 
         foreach ($questionarioPerguntas as $questionarioPergunta) {
