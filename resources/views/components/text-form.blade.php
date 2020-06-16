@@ -34,7 +34,12 @@
           {{-- Casos em que é necessário descrever algum texto --}}
           @case('text')
                 <div class="form-group">
-                  <textarea class="form-control" rows="3" maxlength="255"></textarea>
+                  <textarea class="form-control"
+                            rows="3"
+                            maxlength="255"
+                            data-questionario_id="{{ $perguntaCollection->questionario_id }}"
+                            data-pergunta_id="{{ $perguntaCollection->pergunta_id }}"
+                  ></textarea>
                 </div>
               @break
           

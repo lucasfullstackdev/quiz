@@ -60,7 +60,11 @@
         const controlView = ev => {
             if (dataViewIsInvalidToNextView())
                 return null;
-                
+            
+            // Adicionar as opção do type checkbox no dataToSubmit ao ir para próxima questão
+            if (Object.keys(checkboxTemp).length != 1)
+                dataToSubmit.push(checkboxTemp);
+
             let currentView = currentTargetData.current;
             let nextView = currentTargetData.next;
 
@@ -99,21 +103,32 @@
                 checkboxTemp.questionario_id = currentTargetData.questionario_id;
                 checkboxTemp.pergunta_id = currentTargetData.pergunta_id;
 
-                if ($.inArray(currentTargetData.pergunta_opcao_id, checkboxTemp.opcoes) == -1)
+                if ($.inArray(currentTargetData.pergunta_opcao_id, checkboxTemp.pergunta_opcao_id) == -1)
                     checkboxTemp.pergunta_opcao_id.push(currentTargetData.pergunta_opcao_id);
 
                 // se estiver desmarcado -> remover da estrutura de dados                
                 if (!currentTarget.is(':checked')){
-                    checkboxTemp.opcoes.map( (opcao, index) => {
+                    checkboxTemp.pergunta_opcao_id.map( (opcao, index) => {
                         if (opcao == currentTargetData.pergunta_opcao_id)
-                            return checkboxTemp.opcoes.splice(index, 1);
+                            return checkboxTemp.pergunta_opcao_id.splice(index, 1);
                     });
+
                 }
+            });
+
+            $('textarea').on('blur', ev => {
+                currentTarget = $(ev.currentTarget);
+                currentTargetData = currentTarget.data();
+                
+                if (currentTarget.val() == '')
+                    return null;
+
+                currentTargetData.vl_pergunta = currentTarget.val();
+                dataToSubmit.push(currentTargetData);
             });
 
             $('#btn-submit').on('click', () => {
                 console.log(dataToSubmit);
-                console.log(checkboxTemp);
             });
 
         });
