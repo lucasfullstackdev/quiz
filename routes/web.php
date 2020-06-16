@@ -20,4 +20,5 @@ Route::redirect('/', '/questionario/1');
 
 Route::prefix('questionario/')->name('questionario.')->group( function(){
     Route::get('/{id_questionario}', 'QuestionarioController@show')->name('show');
+    Route::post('/', 'QuestionarioController@store')->name('store');
 });

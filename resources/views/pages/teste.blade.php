@@ -4,14 +4,9 @@
 
 @section('content')
     @isset($questionario)
-        @foreach ($questionario as $pergunta)
-            {{-- @php
-                dd(
-                    response()->json($pergunta)
-                );
-            @endphp --}}
-            <x-text-form :perguntaCollection="$pergunta" />
-        @endforeach
+            @foreach ($questionario as $pergunta)
+                <x-text-form :perguntaCollection="$pergunta" />
+            @endforeach
     @endisset
 @endsection
 
@@ -79,7 +74,7 @@
             dataToSubmit.push({
                 questionario_id: currentTargetData.questionario_id,
                 pergunta_id: currentTargetData.pergunta_id,
-                pergunta_opcao_id: currentTargetData.pergunta_opcao_id
+                pergunta_opcao_id: [currentTargetData.pergunta_opcao_id]
             });
         };
 
@@ -89,13 +84,16 @@
 
         $(document).ready( function(){
 
+            // Pegar valores para o tipo de pergunta [radio]
             $('button').on('click', ev => {
+                ev.preventDefault();
                 currentTargetData = $(ev.currentTarget).data();
 
                 controlView(ev);
                 prepDataToSubmit(ev);
             });
 
+            // Pegar valores para o tipo de pergunta [checkbox]
             $('input:checkbox').on('click', ev => {
                 currentTarget = $(ev.currentTarget);
                 currentTargetData = currentTarget.data();
@@ -112,10 +110,10 @@
                         if (opcao == currentTargetData.pergunta_opcao_id)
                             return checkboxTemp.pergunta_opcao_id.splice(index, 1);
                     });
-
                 }
             });
 
+            // Pegar valores para o tipo de pergunta [textarea]
             $('textarea').on('blur', ev => {
                 currentTarget = $(ev.currentTarget);
                 currentTargetData = currentTarget.data();
@@ -128,7 +126,18 @@
             });
 
             $('#btn-submit').on('click', () => {
-                console.log(dataToSubmit);
+                $.ajax({
+                    url: '{{ route("questionario.store") }}',
+                    type: 'post',
+                    data: { data: dataToSubmit, _token: '{{csrf_token()}}' },
+                    success: function(response){
+                        console.clear();
+                        console.log(response);
+                    },
+                    error: function(error){
+                        console.log('not ok')
+                    }
+                });
             });
 
         });
