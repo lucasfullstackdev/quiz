@@ -4,24 +4,60 @@
 
     <div class="card-body pt-5 pb-3 p-4">
       <h5 class="card-title font-weight-light text-center mb-5" style="font-size: 30px;">{{ $perguntaCollection->ds_pergunta }}</h5>
+    
+      @switch($perguntaCollection->ds_tipo_pergunta)
+          {{-- Casos em que será necessário utilizar checkbox --}}
+          @case('checkbox')
+                @foreach ($perguntaCollection->opcoes as $opcao)
+                  <div class="form-check mb-3 d-flex align-items-center">
+                    <input class="form-check-input"
+                           type="checkbox"
+                           data-id="{{ $perguntaCollection->questionario_id }}-{{ $perguntaCollection->pergunta_id }}-{{ $opcao->id }}"
+                           data-questionario_id="{{ $perguntaCollection->questionario_id }}"
+                           data-pergunta_id="{{ $perguntaCollection->pergunta_id }}"
+                           data-pergunta_opcao_id="{{ $opcao->id }}"
+                    >
+                    <label class="form-check-label ml-3 p-3 bg-light border rounded">
+                      {{ $opcao->ds_pergunta_opcao }}
+                    </label>
+                  </div>
+                @endforeach
 
-      @if (count($perguntaCollection->opcoes) != 0)
-        @foreach ($perguntaCollection->opcoes as $opcao)
-          <button class="btn btn-block btn-light border" 
-                  data-current="view-{{ $perguntaCollection->pergunta_id }}" 
-                  data-next="view-{{ $opcao->next_pergunta_id }}"
-                  data-questionario_id="{{ $perguntaCollection->questionario_id }}"
-                  data-pergunta_id="{{ $perguntaCollection->pergunta_id }}"
-                  data-opcao_id="{{ $opcao->id }}"
-          >
-            {{ $opcao->ds_pergunta_opcao }}
-          </button>
-        @endforeach
-      @else
-          <button>safsd</button>
+                <button class="btn btn-block btn-light border" 
+                        data-current="view-{{ $perguntaCollection->pergunta_id }}" 
+                        data-next="view-{{ $opcao->next_pergunta_id }}"
+                >
+                  Próxima Pergunta
+                </button>
+              @break
+          
+          {{-- Casos em que é necessário descrever algum texto --}}
+          @case('text')
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" maxlength="255"></textarea>
+                </div>
+              @break
+          
+          {{-- A maioria das questões utilizam input radio --}}
+          @default
+            @foreach ($perguntaCollection->opcoes as $opcao)
+              <button class="btn btn-block btn-light border" 
+                      data-current="view-{{ $perguntaCollection->pergunta_id }}" 
+                      data-next="view-{{ $opcao->next_pergunta_id }}"
+                      data-questionario_id="{{ $perguntaCollection->questionario_id }}"
+                      data-pergunta_id="{{ $perguntaCollection->pergunta_id }}"
+                      data-pergunta_opcao_id="{{ $opcao->id }}"
+              >
+                {{ $opcao->ds_pergunta_opcao }}
+              </button>
+            @endforeach
+              
+      @endswitch
+
+      {{-- Adicionar o botão para submeter formulário na última questão --}}
+      @if(!empty($perguntaCollection->sn_ultimo))
+          <button class="btn btn-block btn-light border" id="btn-submit">Enviar</button>
       @endif
-      
-      
     </div>
   </div>
 </div>

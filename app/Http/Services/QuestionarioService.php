@@ -18,10 +18,12 @@ class QuestionarioService
         $questionarioPergunta = QuestionarioPergunta::where('questionario_id', self::$id)
                                                      ->leftJoin('perguntas as pg', 'pg.id', '=', 'questionario_perguntas.pergunta_id')
                                                      ->leftJoin('questionarios as qt', 'qt.id', '=', 'questionario_perguntas.questionario_id')
+                                                     ->leftJoin('tipo_perguntas as tp', 'tp.id', '=', 'pg.tipo_pergunta_id')
                                                      ->select([
                                                         'questionario_id',
                                                         'ds_questionario',
                                                         'pergunta_id',
+                                                        'ds_tipo_pergunta',
                                                         'sn_primeiro',
                                                         'sn_ultimo',
                                                         'ds_pergunta'

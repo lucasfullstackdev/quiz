@@ -17,44 +17,103 @@
 
 @push('scripts')
     <script type="text/javascript">
-        $(document).ready( function(){
-            let questionarioSize = @json($questionario).length;
-            let dataToSubmit = [];
+        let currentTarget;
+        let dataToSubmit = [];
 
-            const showNextView = (current, next) => {
-                let currentView = $(`#${current}`).find('.card');
-                let nextView = $(`#${next}`).find('.card');
+        // Verificar se objeto possui as propriedades passadas
+        const objectHasProperties = (obj, props) => {
+            let missingProperty = true;
 
-                currentView.fadeOut("slow", () => {
-                    currentView.toggleClass('d-none'); 
-                    nextView.toggleClass('d-none'); 
+            for (const dataView in obj){
+                props.map( prop => {
+                    if (!obj.hasOwnProperty(prop))
+                        missingProperty = false;
                 });
-            };
+            }
 
-            const controlView = ev => {
-                let currentTarget = $(ev.currentTarget);
-                let currentView = currentTarget.data().current;
-                let nextView = currentTarget.data().next;
+            return missingProperty;
+        };
 
-                showNextView(currentView, nextView);
-            };
+        // Verificar se o objeto pode ser utilizado para redicionamento
+        const dataViewIsInvalidToNextView = () => {
+            return $.isEmptyObject(currentTargetData) || !objectHasProperties(currentTargetData, ['next', 'current']);
+        }
 
-            const prepDataToSubmit = ev => {
-                let currentTarget = $(ev.currentTarget).data();
+        // Verificar se o objeto pode ser utilizado para preenchimento dos valores do formulário
+        const dataViewIsInvalidToSubmit = () => {
+            const properties = ['questionario_id', 'pergunta_id', 'pergunta_opcao_id'];
+            return $.isEmptyObject(currentTargetData) || !objectHasProperties(currentTargetData, properties);
+        };
+
+        // Exibir Próxima view [questão]
+        const showNextView = (current, next) => {
+            let currentView = $(`#${current}`).find('.card');
+            let nextView = $(`#${next}`).find('.card');
+
+            currentView.fadeOut("slow", () => {
+                currentView.toggleClass('d-none'); 
+                nextView.toggleClass('d-none'); 
+            });
+        };
+
+        // controle de visibilidade das views
+        const controlView = ev => {
+            if (dataViewIsInvalidToNextView())
+                return null;
                 
-                if (dataToSubmit.length == questionarioSize - 2)
-                    console.log('now');
+            let currentView = currentTargetData.current;
+            let nextView = currentTargetData.next;
 
-                dataToSubmit.push({
-                    questionario_id: currentTarget.questionario_id,
-                    pergunta_id: currentTarget.pergunta_id,
-                    opcao_id: currentTarget.opcao_id
-                });
-            };
+            showNextView(currentView, nextView);
+        };
+
+        // Preparar os dados para submissão do formulário
+        const prepDataToSubmit = ev => {
+            if (dataViewIsInvalidToSubmit())
+                return null;
+
+            dataToSubmit.push({
+                questionario_id: currentTargetData.questionario_id,
+                pergunta_id: currentTargetData.pergunta_id,
+                pergunta_opcao_id: currentTargetData.pergunta_opcao_id
+            });
+        };
+
+        let checkboxTemp = {
+            pergunta_opcao_id: []
+        };
+
+        $(document).ready( function(){
 
             $('button').on('click', ev => {
+                currentTargetData = $(ev.currentTarget).data();
+
                 controlView(ev);
                 prepDataToSubmit(ev);
+            });
+
+            $('input:checkbox').on('click', ev => {
+                currentTarget = $(ev.currentTarget);
+                currentTargetData = currentTarget.data();
+
+                checkboxTemp.questionario_id = currentTargetData.questionario_id;
+                checkboxTemp.pergunta_id = currentTargetData.pergunta_id;
+
+                if ($.inArray(currentTargetData.pergunta_opcao_id, checkboxTemp.opcoes) == -1)
+                    checkboxTemp.pergunta_opcao_id.push(currentTargetData.pergunta_opcao_id);
+
+                // se estiver desmarcado -> remover da estrutura de dados                
+                if (!currentTarget.is(':checked')){
+                    checkboxTemp.opcoes.map( (opcao, index) => {
+                        if (opcao == currentTargetData.pergunta_opcao_id)
+                            return checkboxTemp.opcoes.splice(index, 1);
+                    });
+                }
+            });
+
+            $('#btn-submit').on('click', () => {
+                console.log(dataToSubmit);
+                console.log(checkboxTemp);
             });
 
         });
