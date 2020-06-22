@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
+Route::get('/logout', function(){
+    Auth::logout();
+});
 
 Route::get('/', 'HomeController@index')->name('home.index');
 
@@ -23,6 +28,5 @@ Route::prefix('questionario/')->name('questionario.')->middleware(['auth'])->gro
     Route::get('/{id_questionario}/informativo/{id_info}', 'InformativoController@show')->name('info.show');
 });
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

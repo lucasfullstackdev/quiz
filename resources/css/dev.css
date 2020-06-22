@@ -33,3 +33,17 @@
 }
 .card a { text-decoration: none; }
 .card img { max-height: 150px; max-width: 150px; }
+
+/* +------------------------------------------------------+
+ * | Login -----------------------------------------------+
+ * +------------------------------------------------------+
+ */
+.info .display-4,
+.info h5 { text-align: center; }
+.info .display-4 {
+    font-size: 40px;
+}
+
+.info h5 {
+    font-weight: lighter;
+}
