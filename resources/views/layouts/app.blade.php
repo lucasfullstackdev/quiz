@@ -7,6 +7,7 @@
     <title>Quiz | @yield('title')</title>
 
     <link rel="stylesheet" href="{{ url(mix('css/bootstrap.css')) }}">
+    <link rel="stylesheet" href="{{ url(mix('css/dev.css')) }}">
 </head>
 <body>
     
@@ -29,7 +30,6 @@
             </div>
         </div>
     </section>
-        
 
     <script src="{{ url(mix('js/jquery.js')) }}"></script>
     <script src="{{ url(mix('js/bootstrap.js')) }}"></script>

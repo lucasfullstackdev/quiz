@@ -17,4 +17,7 @@ const mix = require('laravel-mix');
 mix
     .scripts('node_modules/jquery/dist/jquery.js', 'public/js/jquery.js')
     .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/js/bootstrap.js')
-    .scripts('node_modules/bootstrap/dist/css/bootstrap.css', 'public/css/bootstrap.css').version();
+    .scripts('node_modules/bootstrap/dist/css/bootstrap.css', 'public/css/bootstrap.css')
+    .scripts('resources/css/dev.css', 'public/css/dev.css')
+    .copyDirectory('resources/img', 'public/img')
+    .version();

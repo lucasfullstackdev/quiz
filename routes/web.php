@@ -15,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home.index');
 
-Route::prefix('questionario/')->name('questionario.')->group( function(){
+Route::prefix('questionario/')->name('questionario.')->middleware(['auth'])->group( function(){
     Route::get('/{id_questionario}', 'QuestionarioController@show')->name('show');
     Route::post('/', 'QuestionarioController@store')->name('store');
 
     // Rota para os informativos
     Route::get('/{id_questionario}/informativo/{id_info}', 'InformativoController@show')->name('info.show');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

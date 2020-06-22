@@ -1,0 +1,32 @@
+.jumbotron {
+    margin: 0px;
+    text-align: center;
+    padding-top: 6rem;
+}
+
+
+
+.jumbotron h2 { color: #fff; }
+.jumbotron .header-info { padding-bottom: 5rem; }
+
+.overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: gray;
+    opacity: 0.5;
+}
+
+/* Card 
+ * ==============================================
+ */
+
+.card {
+    min-height: 255px;
+    background-color: rgb(245, 245, 245) !important;
+    opacity: 0.8;
+}
+.card a { text-decoration: none; }
+.card img { max-height: 150px; max-width: 150px; }

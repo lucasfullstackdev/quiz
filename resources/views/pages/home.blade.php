@@ -7,44 +7,13 @@
     <title>Título</title>
 
     <link rel="stylesheet" href="{{ url(mix('css/bootstrap.css')) }}">
+    <link rel="stylesheet" href="{{ url(mix('css/dev.css')) }}">
 </head>
 <style>
-    .jumbotron {
-        margin: 0px;
-        text-align: center;
-        padding-top: 6rem;
-    }
-
     .bg-cover {
         background-image: url("{{ asset('img/bg-home.jpg') }}");
         background-size: 100%;
     }
-
-    .jumbotron h2 { color: #fff; }
-    .jumbotron .header-info { padding-bottom: 5rem; }
-
-    .overlay {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        background-color: gray;
-        opacity: 0.5;
-    }
-
-    /* Card 
-     * ==============================================
-     */
-    
-    .card {
-        min-height: 255px;
-        background-color: rgb(245, 245, 245) !important;
-        opacity: 0.8;
-    }
-    .card a { text-decoration: none; }
-    .card img { max-height: 150px; max-width: 150px; }
-
 </style>
 <body>
     
@@ -75,14 +44,9 @@
             <div class="row">
                 @isset($questionarios)
                     @foreach ($questionarios as $questionario)
-                    {{-- @php
-                        dd(
-                            response()->json($questionario)
-                        );
-                    @endphp --}}
                     <div class="col">
                         <div class="card bg-transparent">
-                            <a href="" class="text-dark">
+                            <a href="{{ route('questionario.show', ['id_questionario' => $questionario->questionario_id]) }}" class="text-dark">
                                 <img class="card-img-top align-self-center" src="{{ asset($questionario->ds_questionario_icon) }}" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $questionario->ds_questionario }}</h5>
