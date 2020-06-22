@@ -14,6 +14,7 @@
     <script type="text/javascript">
         let currentTarget;
         let dataToSubmit = [];
+        let questionario_id = @json($questionario_id);
 
         // Verificar se objeto possui as propriedades passadas
         const objectHasProperties = (obj, props) => {
@@ -129,10 +130,17 @@
                 $.ajax({
                     url: '{{ route("questionario.store") }}',
                     type: 'post',
-                    data: { data: dataToSubmit, _token: '{{csrf_token()}}' },
+                    data: {
+                        data: dataToSubmit,
+                        questionario_id,
+                        _token: '{{csrf_token()}}'
+                    },
                     success: function(response){
                         console.clear();
                         console.log(response);
+                        if (response.success == true){
+                            window.location.href = `/questionario/${questionario_id}/informativo/${response.informativo_id}`;
+                        }
                     },
                     error: function(error){
                         console.log('not ok')

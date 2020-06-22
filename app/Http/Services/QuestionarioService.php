@@ -2,7 +2,7 @@
 
 namespace App\Http\Services;
 
-// use App\Models\Questionario;
+use App\Models\Questionario;
 use App\Models\QuestionarioPergunta;
 use App\Models\Pergunta;
 use App\Models\PerguntaOpcao;
@@ -35,6 +35,18 @@ class QuestionarioService
             $pergunta->opcoes = $perguntaOpcao->where('pergunta_id', $pergunta->pergunta_id);
         
         return $questionarioPergunta;
+    }
+
+    public static function allWithInfo()
+    {
+        $questionarios = Questionario::leftJoin('informativos as info', 'info.questionario_id', '=', 'questionarios.id')
+                                     ->select([
+                                         '*',
+                                         'info.id as info_id'
+                                     ])
+                                     ->get();
+
+        return $questionarios;
     }
 
 }

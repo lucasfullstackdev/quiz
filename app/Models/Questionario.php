@@ -10,5 +10,5 @@ class Questionario extends Model
     use SoftDeletes;
    
     protected $table = 'questionarios';
-    protected $fillable = ['ds_questionario'];
+    protected $fillable = ['ds_questionario', 'ds_questionario_icon'];
 }

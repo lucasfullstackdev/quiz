@@ -10,5 +10,5 @@ class HistoricoRespostas extends Model
     use SoftDeletes;
 
     protected $table = 'historico_respostas';
-    protected $fillable = ['questionario_id', 'pergunta_id', 'pergunta_opcao_id', 'user_id'];
+    protected $fillable = ['questionario_id', 'pergunta_id', 'pergunta_opcao_id', 'vl_pergunta', 'user_id'];
 }

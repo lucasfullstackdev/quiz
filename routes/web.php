@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::redirect('/', '/questionario/1');
+Route::get('/', 'HomeController@index')->name('home.index');
 
 Route::prefix('questionario/')->name('questionario.')->group( function(){
     Route::get('/{id_questionario}', 'QuestionarioController@show')->name('show');
     Route::post('/', 'QuestionarioController@store')->name('store');
+
+    // Rota para os informativos
+    Route::get('/{id_questionario}/informativo/{id_info}', 'InformativoController@show')->name('info.show');
 });

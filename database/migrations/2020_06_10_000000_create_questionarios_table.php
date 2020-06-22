@@ -17,6 +17,7 @@ class CreateQuestionariosTable extends Migration
             $table->increments('id');
 
             $table->string('ds_questionario');
+            $table->string('ds_questionario_icon');
 
             $table->timestamps();
             $table->softDeletes();

@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Services\QuestionarioService;
-// use App\Models\HistoricoRespostas;
-use App\Http\Services\HistoricoRespostasService;
 use App\Models\Informativo;
 
-class QuestionarioController extends Controller
+class InformativoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +14,7 @@ class QuestionarioController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -38,27 +35,7 @@ class QuestionarioController extends Controller
      */
     public function store(Request $request)
     {
-        $respostas = $request->except(['_token', 'questionario_id']);
-        $respostas = [
-            'data' => [
-                ['pergunta_id' => 22, 'questionario_id' => 3, 'pergunta_opcao_id' => [67]],
-                ['pergunta_id' => 23, 'questionario_id' => 3, 'pergunta_opcao_id' => [68, 69, 70, 71]],
-                ['pergunta_id' => 24, 'questionario_id' => 3, 'vl_pergunta' => 'espaço reservado para descrição da situação!' ],
-            ]
-        ];
-
-        $response = HistoricoRespostasService::prep($respostas)->send();
-
-        if ($response['success'] == true){
-            $info = Informativo::where('questionario_id', $request['questionario_id'])
-                                ->where('sn_ultimo', 1)
-                                ->select('id')
-                                ->first();
-            if ($info)
-                $response['informativo_id'] = $info['id'];
-        }
-
-        return $response;
+        //
     }
 
     /**
@@ -67,14 +44,15 @@ class QuestionarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($questionario_id, $informativo_id)
     {
-        $questionario = QuestionarioService::find($id);
-        
-        return view('pages.teste', [
-            'questionario' => $questionario,
-            'questionario_id' => $id
-        ]);
+        $info = Informativo::where('questionario_id', $questionario_id)
+                           ->where('id', $informativo_id)
+                           ->where('sn_ultimo', 1)
+                           ->select('ds_informativo_view')
+                           ->first();
+                           
+        return view($info['ds_informativo_view']);
     }
 
     /**
