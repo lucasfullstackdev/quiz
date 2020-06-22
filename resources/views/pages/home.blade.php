@@ -44,16 +44,24 @@
             <div class="row">
                 @isset($questionarios)
                     @foreach ($questionarios as $questionario)
-                    <div class="col">
-                        <div class="card bg-transparent">
-                            <a href="{{ route('questionario.show', ['id_questionario' => $questionario->questionario_id]) }}" class="text-dark">
-                                <img class="card-img-top align-self-center" src="{{ asset($questionario->ds_questionario_icon) }}" alt="">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $questionario->ds_questionario }}</h5>
-                                </div>
-                            </a>
+                        <div class="col">
+                            <form action="{{ route('info.show') }}" method="post">
+                                @csrf
+
+                                <input type="hidden" name="informativo_id" value="1" class="hidden">
+                                <input type="hidden" name="questionario_id" value="{{ $questionario->questionario_id }}" class="hidden">
+
+                                <!-- O conteúdo do card fica no button do formulário -->
+                                <button type="submit" class="btn btn-block">
+                                    <div class="card bg-transparent">
+                                        <img class="card-img-top align-self-center" src="{{ asset($questionario->ds_questionario_icon) }}" alt="">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $questionario->ds_questionario }}</h5>
+                                        </div>
+                                    </div>
+                                </button>
+                            </form>
                         </div>
-                    </div>
                     @endforeach
                 @endisset
             </div>

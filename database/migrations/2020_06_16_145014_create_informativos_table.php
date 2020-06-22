@@ -18,11 +18,11 @@ class CreateInformativosTable extends Migration
 
             $table->text('ds_informativo_view');
             
-            $table->integer('questionario_id')->unsigned()->nullable();
-            $table->foreign('questionario_id')->references('id')->on('questionarios');
+            // $table->integer('questionario_id')->unsigned()->nullable();
+            // $table->foreign('questionario_id')->references('id')->on('questionarios');
 
-            $table->boolean('sn_primeiro')->default(0);
-            $table->boolean('sn_ultimo')->default(0);
+            // $table->boolean('sn_primeiro')->default(0);
+            // $table->boolean('sn_ultimo')->default(0);
 
             $table->timestamps();
             $table->softDeletes();

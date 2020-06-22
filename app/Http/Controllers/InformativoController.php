@@ -44,15 +44,19 @@ class InformativoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($questionario_id, $informativo_id)
+    public function show(Request $request)
     {
-        $info = Informativo::where('questionario_id', $questionario_id)
-                           ->where('id', $informativo_id)
-                           ->where('sn_ultimo', 1)
-                           ->select('ds_informativo_view')
-                           ->first();
-                           
-        return view($info['ds_informativo_view']);
+        // $info = Informativo::where('questionario_id', $questionario_id)
+        //                    ->where('id', $informativo_id)
+        //                    ->where('sn_ultimo', 1)
+        //                    ->select('ds_informativo_view')
+        //                    ->first();
+
+        $info = Informativo::find($request->input('informativo_id'));
+        
+        return view($info['ds_informativo_view'], [
+            'questionario_id' => $request->input('questionario_id')
+        ]);
     }
 
     /**
