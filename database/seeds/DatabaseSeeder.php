@@ -18,5 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PerguntaOpcaoSeeder::class);
         $this->call(QuestionarioPerguntaSeeder::class);
         $this->call(InformativoSeeder::class);
+        $this->call(MenuSeeder::class);
+        $this->call(AccessLevelSeeder::class);
+        $this->call(UserAccessLevelSeeder::class);
+        $this->call(MenuAccessLevelSeeder::class);
     }
 }

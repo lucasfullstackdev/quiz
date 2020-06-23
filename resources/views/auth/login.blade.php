@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Login')
+
 @section('content')
 <div class="container">
     <!-- Informativo -->
@@ -15,7 +17,7 @@
 
     <div class="row d-flex justify-content-center">
         {{-- <div class="row justify-content-center"> --}}
-        <div class="col-md-4">
+        <div class="col-sm-12 col-md-7 col-lg-4">
             <div class="card bg-success">
                 <!-- Corpo do card -->
                 <div class="card-body">

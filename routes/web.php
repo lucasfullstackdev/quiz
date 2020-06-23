@@ -37,9 +37,7 @@ Route::middleware(['auth'])->group( function(){
     Route::prefix('questionario/')->name('questionario.')->group( function(){
         Route::get('/{id_questionario}', 'QuestionarioController@show')->name('show');
         Route::post('/', 'QuestionarioController@store')->name('store');
-    });
-
-    
+    });    
 });
 
 /* 
@@ -49,3 +47,12 @@ Route::middleware(['auth'])->group( function(){
  */
 Route::post('/informativo', 'InformativoController@showByPost')->name('info.showbypost');
 Route::get('/informativo/{informativo_id}', 'InformativoController@showByGet')->name('info.showbyget');
+
+/* 
+ * +------------------------------------------------------+
+ * | Rotas para os Dashboards ----------------------------+
+ * +------------------------------------------------------+
+ */
+Route::prefix('dashboard')->name('dashboard.')->group( function(){
+    Route::get('/', 'DashboardController@index')->name('index');
+});

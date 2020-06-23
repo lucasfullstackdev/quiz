@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInformativosTable extends Migration
+class CreateMenuAccessLevel extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateInformativosTable extends Migration
      */
     public function up()
     {
-        Schema::create('informativos', function (Blueprint $table) {
+        Schema::create('menu_access_levels', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->text('ds_informativo_view');
-            
+            $table->integer('menu_id')->unsigned();
+            $table->foreign('menu_id')->references('id')->on('menus');
+
+            $table->integer('access_level_id')->unsigned();
+            $table->foreign('access_level_id')->references('id')->on('access_levels');
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +34,6 @@ class CreateInformativosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('informativos');
+        Schema::dropIfExists('menu_access_levels');
     }
 }
