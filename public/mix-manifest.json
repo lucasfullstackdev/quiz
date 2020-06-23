@@ -1,6 +1,9 @@
 {
     "/js/jquery.js": "/js/jquery.js?id=23c7c5d2d1317508e807",
     "/js/bootstrap.js": "/js/bootstrap.js?id=4d5e7e6ccbe7360bc74e",
+    "/js/jquery-datatable.js": "/js/jquery-datatable.js?id=8c97dd1abd751629ad25",
+    "/js/bootstrap-datatable.js": "/js/bootstrap-datatable.js?id=b1ebbeee8b3ecf150ea2",
+    "/css/datatable.css": "/css/datatable.css?id=e255a69ed79f30c5bec1",
     "/css/bootstrap.css": "/css/bootstrap.css?id=e04beb39d48812a0b98a",
-    "/css/dev.css": "/css/dev.css?id=fdb636cec00f17eefbef"
+    "/css/dev.css": "/css/dev.css?id=2e45a33417c27a950148"
 }

@@ -11,4 +11,5 @@ class User extends Model
     
     protected $table = 'users';
     protected $fillable = ['nameil', 'email', 'password'];
+    protected $hidden = ['password', 'remember_token'];
 }

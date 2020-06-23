@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Services\MenuService;
-use App\Http\Services\HistoricoRespostasService;
 
 class DashboardController extends Controller
 {
@@ -16,11 +15,12 @@ class DashboardController extends Controller
     public function index()
     {
         $menus = MenuService::allByAccessLevel();
-        $historicoRespostas = HistoricoRespostasService::all();
+        // $historicoRespostas = HistoricoRespostasService::all();
+        // $datatable = Datatables::of($historicoRespostas);
 
         return view('pages.dashboard.historico-respostas', [
-            'menus' => $menus,
-            'historicoRespostas' => $historicoRespostas
+            'menus' => $menus
+            // 'historicoRespostas' => $datatable->blacklist(['action'])->make(true)
         ]);
     }
 

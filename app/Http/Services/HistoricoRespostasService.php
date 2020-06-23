@@ -4,6 +4,9 @@ namespace App\Http\Services;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\HistoricoRespostas;
+use App\Models\User;
+use App\Models\Questionario;
+
 use Message;
 use DB;
 
@@ -67,7 +70,12 @@ class HistoricoRespostasService
     }
 
     public static function all(){
-        $historicoRespostas = HistoricoRespostas::all();
+        $historicoRespostas = HistoricoRespostas::select(['questionario_id', 'user_id', 'created_at'])->groupBy(['questionario_id', 'user_id', 'created_at'])->get();
+
+        foreach ($historicoRespostas as $historicoResposta) {
+            $historicoResposta['user_name'] = User::find($historicoResposta->user_id)->name;
+            $historicoResposta['questionario_description'] = Questionario::find($historicoResposta->questionario_id)->ds_questionario;
+        }
         
         return $historicoRespostas;
     }

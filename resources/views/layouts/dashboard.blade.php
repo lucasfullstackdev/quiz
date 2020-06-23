@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quiz | @yield('title')</title>
 
-    <link rel="stylesheet" href="{{ url(mix('css/bootstrap.css')) }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url(mix('css/bootstrap.css')) }}">
+    <link rel="stylesheet" href="{{ url(mix('css/datatable.css')) }}">
+    
     <link rel="stylesheet" href="{{ url(mix('css/dev.css')) }}">
 </head>
 <body>
@@ -52,7 +54,9 @@
     </section>
 
     <script src="{{ url(mix('js/jquery.js')) }}"></script>
+    <script src="{{ url(mix('js/jquery-datatable.js')) }}"></script>
     <script src="{{ url(mix('js/bootstrap.js')) }}"></script>
+    <script src="{{ url(mix('js/bootstrap-datatable.js')) }}"   ></script>
     
     @stack('scripts')
 </body>

@@ -56,3 +56,12 @@ Route::get('/informativo/{informativo_id}', 'InformativoController@showByGet')->
 Route::prefix('dashboard')->name('dashboard.')->group( function(){
     Route::get('/', 'DashboardController@index')->name('index');
 });
+
+/* 
+ * +------------------------------------------------------+
+ * | Rotas para o Histórico de respostas -----------------+
+ * +------------------------------------------------------+
+ */
+Route::prefix('historico-respostas')->name('historico-respostas.')->group( function(){
+    Route::get('/', 'HistoricoRespostaController@index')->name('index');
+});
