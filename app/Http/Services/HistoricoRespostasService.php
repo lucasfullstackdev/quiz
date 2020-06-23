@@ -79,4 +79,16 @@ class HistoricoRespostasService
         
         return $historicoRespostas;
     }
+
+    public static function findByQuestionarioAndUser($questionario_id, $user_id, $created_at)
+    {
+        $historicoRespostas = HistoricoRespostas::where('questionario_id', $questionario_id)
+                                                ->where('user_id', $user_id)
+                                                ->where('created_at', $created_at)
+                                                ->get();
+
+        dd(
+            $historicoRespostas
+        );
+    }
 }

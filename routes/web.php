@@ -64,4 +64,5 @@ Route::prefix('dashboard')->name('dashboard.')->group( function(){
  */
 Route::prefix('historico-respostas')->name('historico-respostas.')->group( function(){
     Route::get('/', 'HistoricoRespostaController@index')->name('index');
+    Route::get('/questionario/{questionario_id}/user/{user_id}/created/{created_at}', 'HistoricoRespostaController@print')->name('print');
 });
