@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        $questionarios = QuestionarioService::allWithBeginInfo();
+        $questionarios = QuestionarioService::all();
 
         return view('pages.home', [
             'questionarios' => $questionarios

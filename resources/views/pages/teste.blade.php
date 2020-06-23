@@ -136,11 +136,8 @@
                         _token: '{{csrf_token()}}'
                     },
                     success: function(response){
-                        console.clear();
-                        console.log(response);
-                        if (response.success == true){
-                            window.location.href = `/questionario/${questionario_id}/informativo/${response.informativo_id}`;
-                        }
+                        if (response.success == true)
+                            window.location.href = `/informativo/2`;
                     },
                     error: function(error){
                         console.log('not ok')

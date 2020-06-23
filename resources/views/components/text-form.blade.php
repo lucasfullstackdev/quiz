@@ -61,7 +61,7 @@
 
       {{-- Adicionar o botão para submeter formulário na última questão --}}
       @if(!empty($perguntaCollection->sn_ultimo))
-          <button class="btn btn-block btn-light border" id="btn-submit">Enviar</button>
+          <button class="btn btn-block btn-success border" id="btn-submit">Enviar</button>
       @endif
     </div>
   </div>

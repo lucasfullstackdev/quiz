@@ -45,11 +45,11 @@
                 @isset($questionarios)
                     @foreach ($questionarios as $questionario)
                         <div class="col">
-                            <form action="{{ route('info.show') }}" method="post">
+                            <form action="{{ route('info.showbypost') }}" method="post">
                                 @csrf
 
                                 <input type="hidden" name="informativo_id" value="1" class="hidden">
-                                <input type="hidden" name="questionario_id" value="{{ $questionario->questionario_id }}" class="hidden">
+                                <input type="hidden" name="questionario_id" value="{{ $questionario->id }}" class="hidden">
 
                                 <!-- O conteúdo do card fica no button do formulário -->
                                 <button type="submit" class="btn btn-block">

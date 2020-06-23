@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\HistoricoRespostas;
 use Message;
 use DB;
@@ -32,7 +33,7 @@ class HistoricoRespostasService
                         'questionario_id' => $resposta['questionario_id'],
                         'pergunta_id' => $resposta['pergunta_id'],
                         'pergunta_opcao_id' => $value,
-                        'user_id' => 1
+                        'user_id' => Auth::user()->id
                     ];
                 }
             } else {
@@ -40,7 +41,7 @@ class HistoricoRespostasService
                     'questionario_id' => $resposta['questionario_id'],
                     'pergunta_id' => $resposta['pergunta_id'],
                     'vl_pergunta' => $resposta['vl_pergunta'],
-                    'user_id' => 1
+                    'user_id' => Auth::user()->id
                 ];
             }
         }

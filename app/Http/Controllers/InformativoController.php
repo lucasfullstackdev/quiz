@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Informativo;
+use App\Http\Services\InformativoService;
 
 class InformativoController extends Controller
 {
@@ -44,20 +44,25 @@ class InformativoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($view, $questionario_id=null)
     {
-        // $info = Informativo::where('questionario_id', $questionario_id)
-        //                    ->where('id', $informativo_id)
-        //                    ->where('sn_ultimo', 1)
-        //                    ->select('ds_informativo_view')
-        //                    ->first();
-
-        $info = Informativo::find($request->input('informativo_id'));
-        
-        return view($info['ds_informativo_view'], [
-            'questionario_id' => $request->input('questionario_id')
-        ]);
+        return view($view, [ 'questionario_id' => $questionario_id ]);
     }
+
+    public function showByPost(Request $request)
+    {
+        $info = InformativoService::find($request->input('informativo_id'));
+
+        return $this->show($info['ds_informativo_view'], $request->input('questionario_id'));
+    }
+
+    public function showByGet($informativo_id)
+    {
+        $info = InformativoService::find($informativo_id);
+        
+        return $this->show($info['ds_informativo_view']);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -37,18 +37,25 @@ class QuestionarioService
         return $questionarioPergunta;
     }
 
-    public static function allWithBeginInfo()
+    public static function all()
     {
-        $questionarios = Questionario::leftJoin('informativos as info', 'info.questionario_id', '=', 'questionarios.id')
-                                     ->where('info.sn_primeiro', 1)
-                                     ->select([
-                                         '*',
-                                         'info.questionario_id',
-                                         'info.id as info_id'
-                                     ])
-                                     ->get();
+        $questionarios = Questionario::all();
 
         return $questionarios;
     }
+
+    // public static function allWithBeginInfo()
+    // {
+    //     $questionarios = Questionario::leftJoin('informativos as info', 'info.questionario_id', '=', 'questionarios.id')
+    //                                  ->where('info.sn_primeiro', 1)
+    //                                  ->select([
+    //                                      '*',
+    //                                      'info.questionario_id',
+    //                                      'info.id as info_id'
+    //                                  ])
+    //                                  ->get();
+
+    //     return $questionarios;
+    // }
 
 }

@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/* 
+ * +------------------------------------------------------+
+ * | Rotas para autenticação | home ----------------------+
+ * +------------------------------------------------------+
+ */
 Auth::routes();
 
 Route::get('/logout', function(){
@@ -21,11 +27,24 @@ Route::get('/logout', function(){
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/home', 'HomeController@index')->name('home.index');
 
-Route::prefix('questionario/')->name('questionario.')->middleware(['auth'])->group( function(){
-    Route::get('/{id_questionario}', 'QuestionarioController@show')->name('show');
-    Route::post('/', 'QuestionarioController@store')->name('store');
+
+Route::middleware(['auth'])->group( function(){
+    /* 
+     * +------------------------------------------------------+
+     * | Rotas para o questionário ---------------------------+
+     * +------------------------------------------------------+
+     */
+    Route::prefix('questionario/')->name('questionario.')->group( function(){
+        Route::get('/{id_questionario}', 'QuestionarioController@show')->name('show');
+        Route::post('/', 'QuestionarioController@store')->name('store');
+    });
+
+    /* 
+     * +------------------------------------------------------+
+     * | Rotas para os informativos --------------------------+
+     * +------------------------------------------------------+
+     */
+    Route::post('/informativo', 'InformativoController@showByPost')->name('info.showbypost');
+    Route::get('/informativo/{informativo_id}', 'InformativoController@showByGet')->name('info.showbyget');
 });
 
-
-// Rota para os informativos
-Route::post('/informativo', 'InformativoController@show')->name('info.show')->middleware('auth');

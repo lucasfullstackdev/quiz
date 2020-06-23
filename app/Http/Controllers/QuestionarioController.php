@@ -39,24 +39,18 @@ class QuestionarioController extends Controller
     public function store(Request $request)
     {
         $respostas = $request->except(['_token', 'questionario_id']);
-        $respostas = [
-            'data' => [
-                ['pergunta_id' => 22, 'questionario_id' => 3, 'pergunta_opcao_id' => [67]],
-                ['pergunta_id' => 23, 'questionario_id' => 3, 'pergunta_opcao_id' => [68, 69, 70, 71]],
-                ['pergunta_id' => 24, 'questionario_id' => 3, 'vl_pergunta' => 'espaço reservado para descrição da situação!' ],
-            ]
-        ];
+        // $respostas = [
+        //     'data' => [
+        //         ['pergunta_id' => 22, 'questionario_id' => 3, 'pergunta_opcao_id' => [67]],
+        //         ['pergunta_id' => 23, 'questionario_id' => 3, 'pergunta_opcao_id' => [68, 69, 70, 71]],
+        //         ['pergunta_id' => 24, 'questionario_id' => 3, 'vl_pergunta' => 'espaço reservado para descrição da situação!' ],
+        //     ]
+        // ];
 
         $response = HistoricoRespostasService::prep($respostas)->send();
-
-        if ($response['success'] == true){
-            $info = Informativo::where('questionario_id', $request['questionario_id'])
-                                ->where('sn_ultimo', 1)
-                                ->select('id')
-                                ->first();
-            if ($info)
-                $response['informativo_id'] = $info['id'];
-        }
+        
+        // if ($response['success'] == true)
+        //     $response['informativo_id'] = 2;
 
         return $response;
     }
