@@ -44,18 +44,4 @@ class QuestionarioService
         return $questionarios;
     }
 
-    // public static function allWithBeginInfo()
-    // {
-    //     $questionarios = Questionario::leftJoin('informativos as info', 'info.questionario_id', '=', 'questionarios.id')
-    //                                  ->where('info.sn_primeiro', 1)
-    //                                  ->select([
-    //                                      '*',
-    //                                      'info.questionario_id',
-    //                                      'info.id as info_id'
-    //                                  ])
-    //                                  ->get();
-
-    //     return $questionarios;
-    // }
-
 }

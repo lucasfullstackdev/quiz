@@ -63,7 +63,6 @@ class InformativoController extends Controller
         return $this->show($info['ds_informativo_view']);
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *

@@ -5,12 +5,12 @@
     <div class="container">
         <div class="row">
             <!-- lado esquerdo -->
-            <div class="col">
+            <div class="col-sm-12 col-md-5 col-lg-6">
                 <img src="{{ asset('img/info/info-begin.png') }}" alt="" class="img-info">
             </div>
             
             <!-- lado direito -->
-            <div class="col">
+            <div class="col-sm-12 col-md-7 col-lg-6">
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-8">
                         <h4 class="text-justify font-weight-light mb-3">

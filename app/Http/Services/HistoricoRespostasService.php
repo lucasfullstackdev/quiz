@@ -57,7 +57,8 @@ class HistoricoRespostasService
                 HistoricoRespostas::Create($data);
             
             DB::commit();
-            
+            Auth::logout();
+                        
             return Message::success("ok", 201)->bind(self::$dataToSend);
         } catch (\Throwable $th) {
             DB::rollback();

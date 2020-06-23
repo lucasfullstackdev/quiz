@@ -39,12 +39,13 @@ Route::middleware(['auth'])->group( function(){
         Route::post('/', 'QuestionarioController@store')->name('store');
     });
 
-    /* 
-     * +------------------------------------------------------+
-     * | Rotas para os informativos --------------------------+
-     * +------------------------------------------------------+
-     */
-    Route::post('/informativo', 'InformativoController@showByPost')->name('info.showbypost');
-    Route::get('/informativo/{informativo_id}', 'InformativoController@showByGet')->name('info.showbyget');
+    
 });
 
+/* 
+ * +------------------------------------------------------+
+ * | Rotas para os informativos --------------------------+
+ * +------------------------------------------------------+
+ */
+Route::post('/informativo', 'InformativoController@showByPost')->name('info.showbypost');
+Route::get('/informativo/{informativo_id}', 'InformativoController@showByGet')->name('info.showbyget');

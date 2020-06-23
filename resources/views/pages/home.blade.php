@@ -24,14 +24,12 @@
                 <img src="https://laravel.com/img/logomark.min.svg" width="30" height="30" alt="" class="mr-2">
                 Quiz
             </a>
-
             <button class="btn btn-success">Entrar</button>
         </div>
     </nav>
 
-    <!-- Content -->
-    <div class="jumbotron jumbotron position-relative bg-cover">
-        {{-- <div class="overlay"></div> --}}
+    <!-- Jumbotron -->
+    <div class="jumbotron jumbotron-fluid bg-cover">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -41,30 +39,38 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                @isset($questionarios)
-                    @foreach ($questionarios as $questionario)
-                        <div class="col">
-                            <form action="{{ route('info.showbypost') }}" method="post">
-                                @csrf
+        </div>
+    </div>
 
-                                <input type="hidden" name="informativo_id" value="1" class="hidden">
-                                <input type="hidden" name="questionario_id" value="{{ $questionario->id }}" class="hidden">
-
-                                <!-- O conteúdo do card fica no button do formulário -->
-                                <button type="submit" class="btn btn-block">
-                                    <div class="card bg-transparent">
-                                        <img class="card-img-top align-self-center" src="{{ asset($questionario->ds_questionario_icon) }}" alt="">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $questionario->ds_questionario }}</h5>
-                                        </div>
-                                    </div>
-                                </button>
-                            </form>
-                        </div>
-                    @endforeach
-                @endisset
+    <div class="container pt-5 pb-5">
+        <div class="row pb-5">
+            <div class="col">
+                <h2 class="text-center">Selecione uma das opções abaixo</h2>
             </div>
+        </div>
+        <div class="row">
+            @isset($questionarios)
+                @foreach ($questionarios as $questionario)
+                    <div class="col-sm-12 col-md-6 col-lg-3 pb-3">
+                        <form action="{{ route('info.showbypost') }}" method="post">
+                            @csrf
+
+                            <input type="hidden" name="informativo_id" value="1" class="hidden">
+                            <input type="hidden" name="questionario_id" value="{{ $questionario->id }}" class="hidden">
+
+                            <!-- O conteúdo do card fica no button do formulário -->
+                            <button type="submit" class="btn btn-block">
+                                <div class="card bg-transparent">
+                                    <img class="card-img-top align-self-center" src="{{ asset($questionario->ds_questionario_icon) }}" alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $questionario->ds_questionario }}</h5>
+                                    </div>
+                                </div>
+                            </button>
+                        </form>
+                    </div>
+                @endforeach
+            @endisset
         </div>
     </div>
 

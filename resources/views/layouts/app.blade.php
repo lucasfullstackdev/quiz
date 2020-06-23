@@ -22,8 +22,8 @@
     </nav>
 
     <!-- application content -->
-    <section class="container-fluid">
-        <div class="row pt-5 p-3">
+    <section class="container-fluid pt-5 pb-5">
+        <div class="row">
             <div class="col">
                 @section('content')
                 @show
