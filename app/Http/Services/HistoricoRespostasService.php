@@ -65,4 +65,10 @@ class HistoricoRespostasService
             return Message::error($th);
         }
     }
+
+    public static function all(){
+        $historicoRespostas = HistoricoRespostas::all();
+        
+        return $historicoRespostas;
+    }
 }
