@@ -14,7 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $menus = MenuService::all();
+        $menus = MenuService::allByAccessLevel();
 
         return view('pages.dashboard.index', [
             'menus' => $menus
