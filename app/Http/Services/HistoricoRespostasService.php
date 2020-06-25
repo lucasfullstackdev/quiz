@@ -82,13 +82,69 @@ class HistoricoRespostasService
 
     public static function findByQuestionarioAndUser($questionario_id, $user_id, $created_at)
     {
-        $historicoRespostas = HistoricoRespostas::where('questionario_id', $questionario_id)
-                                                ->where('user_id', $user_id)
-                                                ->where('created_at', $created_at)
-                                                ->get();
-
-        dd(
-            $historicoRespostas
+        $historicoRespostas = DB::select(
+            "select name,
+                    email,
+                    ds_questionario,
+                    ds_pergunta,
+                    vl_pergunta,
+                    ( select group_concat( ds_pergunta_opcao separator '[[--]]' )
+                        from pergunta_opcoes
+					   where id in ( select pergunta_opcao_id 
+									   from historico_respostas as sub
+									  where sub.pergunta_id = base.pergunta_id
+                                    )
+                    ) opcoes,
+                    created_at
+               from ( select user_id,
+                             questionario_id,
+                             pergunta_id,
+                             vl_pergunta,
+                             created_at
+                        from historico_respostas
+                       where user_id = :user_id
+                         and questionario_id = :questionario_id
+                         and created_at = :created_at
+                    group by user_id, questionario_id, pergunta_id, vl_pergunta, created_at
+                    ) base
+          left join ( select id,
+                             ds_questionario
+                        from questionarios
+                    ) as quiz on quiz.id = base.questionario_id
+          left join ( select id,
+                             ds_pergunta
+                        from perguntas
+                    ) as pgt on pgt.id = base.pergunta_id
+          left join ( select id,
+                             name,
+                             email
+                        from users
+                    ) as users on users.id = base.user_id",
+                    [
+                        'user_id' => $user_id,
+                        'questionario_id' => $questionario_id,
+                        'created_at' => $created_at
+                    ]
         );
+
+        $removeProperties = ['name', 'email', 'created_at'];
+        foreach ($historicoRespostas as $historicoResposta) {
+
+            $response['user']['name'] = $historicoResposta->name;
+            $response['user']['email'] = $historicoResposta->email;
+            $response['questionario']['ds_questionario'] = $historicoResposta->ds_questionario;
+            $response['questionario']['created_at'] = date('d/m/Y', strtotime($historicoResposta->created_at));
+
+            foreach ($removeProperties as $removeProperty)
+                unset($historicoResposta->$removeProperty);
+    
+            $response['data'][] = [
+                'ds_pergunta' => $historicoResposta->ds_pergunta,
+                'vl_pergunta' => $historicoResposta->vl_pergunta,
+                'opcoes' => explode('[[--]]', $historicoResposta->opcoes),
+            ];
+        }
+
+        return $response;
     }
 }

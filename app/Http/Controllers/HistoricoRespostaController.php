@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Services\HistoricoRespostasService;
 use DataTables;
+use PDF;
 
 class HistoricoRespostaController extends Controller
 {
@@ -19,5 +20,9 @@ class HistoricoRespostaController extends Controller
     public function print($questionario_id, $user_id, $created_at)
     {
         $historicoRespostas = HistoricoRespostasService::findByQuestionarioAndUser($questionario_id, $user_id, $created_at);
+
+        return PDF::loadView('prints.questionario', [
+            "historicoRespostas" => $historicoRespostas
+        ])->stream();
     }
 }
