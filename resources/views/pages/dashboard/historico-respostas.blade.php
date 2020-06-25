@@ -32,35 +32,26 @@
             };
 
             var table = $('#people-table').DataTable({
-                    destroy: true,
-                    responsive: true,
-                    processing: true,
-                    serverSide: true,
-                    ajax: "{!! route('historico-respostas.index') !!}",
-                    columns: [
-                        {data: 'questionario_id'},
-                        {data: 'questionario_description'},
-                        {data: 'user_id'},
-                        {data: 'user_name'},
-                        {data: 'created_at'},
-                        {
-                            data: "view-pdf",
-                            render: (data, type, row, meta) => button(row)
-                        }
-                        // {
-                        //     "data": "action",
-                        //     "render": (data, type, row, meta) => {
-                        //         return '<a href="'+ $('link[rel="base"]').attr('href') + '/editar/' + row.id +'"\
-                        //                    class="btn btn-xs btn-info"\
-                        //                    title="Editar Pessoa"\
-                        //                 >\
-                        //                     <i class="fa fa-edit"></i>\
-                        //                 </a>\
-                        //                 <a href="'+ $('link[rel="base"]').attr('href') + '/excluir/' + row.id +'" id="person-'+ row.id +'" class="btn btn-xs btn-danger" data-toggle="confirmation" data-btn-ok-label="Sim" data-btn-ok-class="btn-success" data-btn-ok-icon-class="material-icons" data-btn-ok-icon-content="" data-btn-cancel-label="Não" data-btn-cancel-class="btn-danger" data-btn-cancel-icon-class="material-icons" data-btn-cancel-icon-content="" data-title="Tem certeza que deseja excluir o cadastro de '+ row.name +'?" data-content="Esta ação não poderá ser desfeita." title="Excluir Pessoa"> <i class="fa fa-trash"></i></a>';
-                        //     }
-                        // }
-                        ],
-                    });
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+                },
+                destroy: true,
+                responsive: true,
+                processing: true,
+                serverSide: true,
+                ajax: "{!! route('historico-respostas.index') !!}",
+                columns: [
+                    {data: 'questionario_id'},
+                    {data: 'questionario_description'},
+                    {data: 'user_id'},
+                    {data: 'user_name'},
+                    {data: 'created_at_'},
+                    {
+                        data: "view-pdf",
+                        render: (data, type, row, meta) => button(row)
+                    }
+                ],
+            });
         });
     </script>
 @endpush
