@@ -4,19 +4,18 @@
 
 @section('content')
     
-    {{-- @isset($historicoRespostas) --}}
-        <table id="people-table" class="col-md-12 table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Questionário</th>
-                    <th>ID Usuário</th>
-                    <th>Usuário</th>
-                    <th>Data</th>
-                    <th width="5%">PDF</th>
-                </tr>
-            </thead>
-        </table>
+    <table id="people-table" class="col-md-12 table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Questionário</th>
+                <th>ID Usuário</th>
+                <th>Usuário</th>
+                <th>Data</th>
+                <th width="5%">PDF</th>
+            </tr>
+        </thead>
+    </table>
 
 @endsection
 

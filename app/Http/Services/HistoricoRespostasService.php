@@ -69,9 +69,24 @@ class HistoricoRespostasService
         }
     }
 
-    public static function all(){
-        $historicoRespostas = HistoricoRespostas::select(['questionario_id', 'user_id', 'created_at'])->groupBy(['questionario_id', 'user_id', 'created_at'])->get();
-
+    public static function all($user_id=null){
+        $historicoRespostas = HistoricoRespostas::select([
+                                                    'questionario_id',
+                                                    'user_id',
+                                                    'created_at'
+                                                ])
+                                                // ->where('user_id', $user_id)
+                                                ->groupBy([
+                                                    'questionario_id',
+                                                    'user_id',
+                                                    'created_at'
+                                                ])
+                                                ->get();
+                                            
+        if (isset($user_id)) {
+            $historicoRespostas = $historicoRespostas->where('user_id', $user_id);
+        }
+        
         foreach ($historicoRespostas as $historicoResposta) {
             $historicoResposta['user_name'] = User::find($historicoResposta->user_id)->name;
             $historicoResposta['questionario_description'] = Questionario::find($historicoResposta->questionario_id)->ds_questionario;

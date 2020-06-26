@@ -15,12 +15,18 @@ class DashboardController extends Controller
     public function index()
     {
         $menus = MenuService::allByAccessLevel();
-        // $historicoRespostas = HistoricoRespostasService::all();
-        // $datatable = Datatables::of($historicoRespostas);
+
+        return view('layouts.dashboard', [
+            'menus' => $menus
+        ]);
+    }
+
+    public function listRespostas()
+    {
+        $menus = MenuService::allByAccessLevel();
 
         return view('pages.dashboard.historico-respostas', [
             'menus' => $menus
-            // 'historicoRespostas' => $datatable->blacklist(['action'])->make(true)
         ]);
     }
 

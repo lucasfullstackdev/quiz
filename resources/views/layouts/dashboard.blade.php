@@ -17,11 +17,11 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top border-bottom">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home.index') }}">
+            <a class="navbar-brand" href="{{ route('dashboard.index') }}">
                 <img src="{{ asset('img/logo.jpg') }}" alt="" class="mr-2">
                 Quiz
             </a>
-            <button class="btn btn-danger">logout</button>
+            <a href="{{ route('logout') }}" class="btn btn-danger">logout</a>
         </div>
     </nav>
 
@@ -33,7 +33,7 @@
                     <ul class="list-group list-group-flush">
                         @isset($menus)
                             @foreach ($menus as $menu)
-                                <a href="{{ $menu->ds_menu_route }}" role="button" class="list-group-item list-group-item-action bg-transparent text-light border-bottom border-secondary">
+                                <a href="{{ route($menu->ds_menu_route) }}" role="button" class="list-group-item list-group-item-action bg-transparent text-light border-bottom border-secondary">
                                     <div class="d-flex w-100 justify-content-between">
                                         <i class="{{ $menu->ds_menu_icon }}" style="font-size: 20px;"></i>
                                         <h5 class="mb-1 mr-2">{{ $menu->ds_menu }}</h5>

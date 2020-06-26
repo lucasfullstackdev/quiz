@@ -13,9 +13,22 @@ class MenuAccessLevelSeeder extends Seeder
     public function run()
     {
         $menuAccessLevels = [
+            // Níveis de acesso [ Master ]
             [
                 'menu_id' => 1,
                 'access_level_id' => 1
+            ],
+
+            // Níveis de acesso [ Admin ]
+            [
+                'menu_id' => 1,
+                'access_level_id' => 2
+            ],
+           
+            // Níveis de acesso [ Usuário ]
+            [
+                'menu_id' => 2,
+                'access_level_id' => 3
             ]
         ];
 

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
+use App\Models\UserAccessLevel;
 
 class RegisterController extends Controller
 {
@@ -66,10 +67,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $createdUser = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if ($createdUser->id != null) {
+            UserAccessLevel::create(['user_id' => $createdUser->id, 'access_level_id' => 3]);
+        }
+
+        return $createdUser;
     }
 }

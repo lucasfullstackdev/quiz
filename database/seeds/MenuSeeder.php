@@ -17,14 +17,14 @@ class MenuSeeder extends Seeder
             [
                 'ds_menu' => 'Questionários',
                 'ds_menu_icon' => 'fa fa-paper-plane',
-                'ds_menu_route' => 'questionario.respostas'
+                'ds_menu_route' => 'dashboard.list-respostas'
             ],
             
             // Listagem de respostas do usuário [owner => user]
             [
                 'ds_menu' => 'Questionários',
                 'ds_menu_icon' => 'fa fa-paper-plane',
-                'ds_menu_route' => 'questionario.resposta'
+                'ds_menu_route' => 'dashboard.list-respostas'
             ]
         ];
 

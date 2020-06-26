@@ -24,7 +24,7 @@
                 <img src="{{ asset('img/logo.jpg') }}" alt="" class="mr-2">
                 Quiz
             </a>
-            <button class="btn btn-success">Entrar</button>
+            <a href="{{ route('dashboard.index') }}" class="btn btn-success" role="button">Entrar</a>
         </div>
     </nav>
 

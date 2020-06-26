@@ -18,10 +18,14 @@ class MenuService
 
     public static function allByAccessLevel()
     {
-        $user = UserAccessLevel::where('user_id', 1)->select('access_level_id')->first();
+        if (!Auth::check())
+            return null;
+
+        $user = UserAccessLevel::where('user_id', Auth::user()->id)->select('access_level_id')->first();
         $menuAccessLevel = MenuAccessLevel::where('access_level_id', $user->access_level_id)->select('menu_id')->get();
 
         $menus = Menu::whereIn('id', $menuAccessLevel)->get();
+        // dd(response()->json($menus));
         
         return $menus;
     }
