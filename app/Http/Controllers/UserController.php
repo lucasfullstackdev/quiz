@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Services\QuestionarioService;
-use App\Http\Services\HistoricoRespostasService;
-use App\Models\Informativo;
+use App\Http\Services\UserService;
+use DataTables;
+use PDF;
 
-class QuestionarioController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,10 @@ class QuestionarioController extends Controller
      */
     public function index()
     {
-        
+        $users = UserService::all();
+        $datatable = Datatables::of($users);
+
+        return $datatable->blacklist(['view-pdf'])->make(true);
     }
 
     /**
@@ -37,10 +40,7 @@ class QuestionarioController extends Controller
      */
     public function store(Request $request)
     {
-        $respostas = $request->except(['_token', 'questionario_id']);
-        $response = HistoricoRespostasService::prep($respostas)->send();
-        
-        return $response;
+        //
     }
 
     /**
@@ -51,12 +51,7 @@ class QuestionarioController extends Controller
      */
     public function show($id)
     {
-        $questionario = QuestionarioService::find($id);
-        
-        return view('pages.questionario', [
-            'questionario' => $questionario,
-            'questionario_id' => $id
-        ]);
+        //
     }
 
     /**

@@ -28,7 +28,7 @@ class HistoricoRespostaController extends Controller
         foreach ($historicoRespostas as $historicoResposta) {
             $historicoResposta['created_at_'] = date('d/m/Y', strtotime($historicoResposta['created_at']));
         }
-        
+
         $datatable = Datatables::of($historicoRespostas);
 
         return $datatable->blacklist(['view-pdf'])->make(true);

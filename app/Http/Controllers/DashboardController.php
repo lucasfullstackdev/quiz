@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Services\MenuService;
+use App\Http\Services\UserService;
 
 class DashboardController extends Controller
 {
@@ -26,6 +27,16 @@ class DashboardController extends Controller
         $menus = MenuService::allByAccessLevel();
 
         return view('pages.dashboard.historico-respostas', [
+            'menus' => $menus
+        ]);
+    }
+
+    public function listUsuarios()
+    {
+        $menus = MenuService::allByAccessLevel();
+        $usuarios = UserService::all();
+
+        return view('pages.dashboard.usuarios', [
             'menus' => $menus
         ]);
     }

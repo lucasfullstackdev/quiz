@@ -13,10 +13,18 @@ class UserSeeder extends Seeder
     public function run()
     {
         $users = [
+            // Usuários Master
+            [
+                'name' => 'master',
+                'email' => 'master@quiz.com.br',
+                'password' => bcrypt('Controle#123'),
+                'remember_token' => Str::random(10)
+            ],
+
             [
                 'name' => 'admin',
                 'email' => 'admin@quiz.com.br',
-                'password' => bcrypt('123'),
+                'password' => bcrypt('admin@user#2123'),
                 'remember_token' => Str::random(10)
             ]
         ];

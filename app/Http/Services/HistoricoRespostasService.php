@@ -52,6 +52,17 @@ class HistoricoRespostasService
        return self::getInstance(); 
     }
 
+    // private static function dataToSendIsValid()
+    // {
+    //     /**
+    //      * Motivos para não possuir direitos trabalhistas
+    //      * 
+    //      * Você saiu do trabalho há mais de 02 anos? SIM
+    //      * 
+    //      */
+    //     return self::$dataToSend;
+    // }
+
     public static function send()
     {
         DB::beginTransaction();

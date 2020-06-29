@@ -11,5 +11,10 @@ class User extends Model
     
     protected $table = 'users';
     protected $fillable = ['nameil', 'email', 'password'];
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['email_verified_at', 'password', 'remember_token'];
+
+    public function getCreatedAtAttribute($createdAt)
+    {
+        return date('d/m/Y', strtotime($createdAt));
+    }
 }

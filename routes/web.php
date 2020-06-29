@@ -21,12 +21,6 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-// Route::get('/logout', function(){
-//     if (Auth::logout()){
-//         dd('here');
-//     }
-//         return redirect()->route('home.index');
-// });
 
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/home', 'HomeController@index')->name('home.index');
@@ -51,8 +45,19 @@ Route::middleware(['auth'])->group( function(){
     Route::prefix('dashboard')->name('dashboard.')->group( function(){
         Route::get('/', 'DashboardController@index')->name('index');
         Route::get('/respostas', 'DashboardController@listRespostas')->name('list-respostas');
+        Route::get('/usuarios', 'DashboardController@listUsuarios')->name('list-usuarios');
+
+        Route::prefix('/list-usuarios')->name('usuarios.')->group(function(){
+            Route::get('/', 'UserController@index')->name('index');
+        });
+
+        Route::prefix('/historico-respostas')->name('historico-respostas.')->group(function(){
+            Route::get('/', 'HistoricoRespostaController@index')->name('index');
+            Route::get('/questionario/{questionario_id}/user/{user_id}/created/{created_at}', 'HistoricoRespostaController@print')->name('print');
+        });
     });
 });
+
 
 /* 
  * +------------------------------------------------------+
@@ -62,14 +67,3 @@ Route::middleware(['auth'])->group( function(){
 Route::post('/informativo', 'InformativoController@showByPost')->name('info.showbypost');
 Route::get('/informativo/{informativo_id}', 'InformativoController@showByGet')->name('info.showbyget');
 
-
-
-/* 
- * +------------------------------------------------------+
- * | Rotas para o Histórico de respostas -----------------+
- * +------------------------------------------------------+
- */
-Route::prefix('dashboard/historico-respostas')->name('historico-respostas.')->group( function(){
-    Route::get('/', 'HistoricoRespostaController@index')->name('index');
-    Route::get('/questionario/{questionario_id}/user/{user_id}/created/{created_at}', 'HistoricoRespostaController@print')->name('print');
-});

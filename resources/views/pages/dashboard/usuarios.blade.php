@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Histórico de respostas')
+@section('title', 'Usuários')
 
 @section('content')
     
@@ -8,9 +8,8 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Questionário</th>
-                <th>ID Usuário</th>
-                <th>Usuário</th>
+                <th>Nome</th>
+                <th>E-mail</th>
                 <th>Data</th>
                 <th width="5%">PDF</th>
             </tr>
@@ -18,6 +17,7 @@
     </table>
 
 @endsection
+
 
 @push('scripts')
     <script type="text/javascript">
@@ -38,13 +38,12 @@
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ajax: "{!! route('dashboard.historico-respostas.index') !!}",
+                ajax: "{!! route('dashboard.usuarios.index') !!}",
                 columns: [
-                    {data: 'questionario_id'},
-                    {data: 'questionario_description'},
-                    {data: 'user_id'},
-                    {data: 'user_name'},
-                    {data: 'created_at_'},
+                    {data: 'id'},
+                    {data: 'name'},
+                    {data: 'email'},
+                    {data: 'created_at'},
                     {
                         data: "view-pdf",
                         render: (data, type, row, meta) => button(row)

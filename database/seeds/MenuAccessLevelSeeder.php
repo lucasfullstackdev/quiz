@@ -18,16 +18,24 @@ class MenuAccessLevelSeeder extends Seeder
                 'menu_id' => 1,
                 'access_level_id' => 1
             ],
+            [
+                'menu_id' => 2,
+                'access_level_id' => 1
+            ],
 
             // Níveis de acesso [ Admin ]
             [
                 'menu_id' => 1,
                 'access_level_id' => 2
             ],
-           
-            // Níveis de acesso [ Usuário ]
             [
                 'menu_id' => 2,
+                'access_level_id' => 2
+            ],
+            
+            // Níveis de acesso [ Usuário ]
+            [
+                'menu_id' => 3,
                 'access_level_id' => 3
             ]
         ];

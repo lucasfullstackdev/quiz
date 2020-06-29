@@ -136,6 +136,9 @@
                         _token: '{{csrf_token()}}'
                     },
                     success: function(response){
+                        console.clear();
+                        console.log(response);
+                        
                         if (response.success == true)
                             window.location.href = `/informativo/2`;
                     },

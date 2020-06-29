@@ -19,6 +19,11 @@ class MenuSeeder extends Seeder
                 'ds_menu_icon' => 'fa fa-paper-plane',
                 'ds_menu_route' => 'dashboard.list-respostas'
             ],
+            [
+                'ds_menu' => 'Usuários',
+                'ds_menu_icon' => 'fa fa-user',
+                'ds_menu_route' => 'dashboard.list-usuarios'
+            ],
             
             // Listagem de respostas do usuário [owner => user]
             [
