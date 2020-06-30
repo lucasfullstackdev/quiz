@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Services\MenuService;
 use App\Http\Services\UserService;
 
 class DashboardController extends Controller
@@ -15,30 +14,22 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $menus = MenuService::allByAccessLevel();
-
-        return view('layouts.dashboard', [
-            'menus' => $menus
-        ]);
+        return view('layouts.dashboard');
     }
 
     public function listRespostas()
     {
-        $menus = MenuService::allByAccessLevel();
-
-        return view('pages.dashboard.historico-respostas', [
-            'menus' => $menus
-        ]);
+        return view('pages.dashboard.historico-respostas');
     }
 
     public function listUsuarios()
     {
-        $menus = MenuService::allByAccessLevel();
-        $usuarios = UserService::all();
+        return view('pages.dashboard.usuarios');
+    }
 
-        return view('pages.dashboard.usuarios', [
-            'menus' => $menus
-        ]);
+    public function perfil()
+    {
+        return view('pages.dashboard.perfil');
     }
 
     /**

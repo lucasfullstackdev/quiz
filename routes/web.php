@@ -44,13 +44,17 @@ Route::middleware(['auth'])->group( function(){
     */
     Route::prefix('dashboard')->name('dashboard.')->group( function(){
         Route::get('/', 'DashboardController@index')->name('index');
-        Route::get('/respostas', 'DashboardController@listRespostas')->name('list-respostas');
+
+        // Usuários
         Route::get('/usuarios', 'DashboardController@listUsuarios')->name('list-usuarios');
+        Route::get('/perfil', 'DashboardController@perfil')->name('perfil');
 
         Route::prefix('/list-usuarios')->name('usuarios.')->group(function(){
             Route::get('/', 'UserController@index')->name('index');
         });
 
+        // Respostas
+        Route::get('/respostas', 'DashboardController@listRespostas')->name('list-respostas');
         Route::prefix('/historico-respostas')->name('historico-respostas.')->group(function(){
             Route::get('/', 'HistoricoRespostaController@index')->name('index');
             Route::get('/questionario/{questionario_id}/user/{user_id}/created/{created_at}', 'HistoricoRespostaController@print')->name('print');
