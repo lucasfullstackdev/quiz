@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group( function(){
         // Usuários
         Route::get('/usuarios', 'DashboardController@listUsuarios')->name('list-usuarios');
         Route::get('/perfil', 'DashboardController@perfil')->name('perfil');
+        Route::put('/perfil', 'UserController@update')->name('perfil.update');
 
         Route::prefix('/list-usuarios')->name('usuarios.')->group(function(){
             Route::get('/', 'UserController@index')->name('index');

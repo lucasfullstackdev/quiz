@@ -10,4 +10,18 @@ class UserService
         return User::all()->except([1, 2]);
     }
 
+    public static function update($userData)
+    {
+        if (empty($userData['password'])) {
+            unset($userData['password']);
+        }
+
+        try {
+            return User::find(Auth()->user()->id)->update($userData);
+        } catch (\Throwable $th) {
+            
+        }
+        
+    }
+
 }

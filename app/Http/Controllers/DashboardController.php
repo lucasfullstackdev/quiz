@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Services\UserService;
+use App\Http\Services\UfService;
 
 class DashboardController extends Controller
 {
@@ -29,7 +30,12 @@ class DashboardController extends Controller
 
     public function perfil()
     {
-        return view('pages.dashboard.perfil');
+        $uf = UfService::all();
+        
+        return view('pages.dashboard.perfil', [
+            'user' => Auth()->user(),
+            'uf' => $uf
+        ]);
     }
 
     /**

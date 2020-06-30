@@ -18,11 +18,11 @@ class CreateUsersTable extends Migration
 
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('fone')->nullable();
+
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
 
             // Social Media
-            $table->string('fone')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
@@ -36,6 +36,8 @@ class CreateUsersTable extends Migration
             $table->string('cidade')->nullable();
             $table->integer('uf_id')->unsigned()->nullable();
             $table->foreign('uf_id')->references('id')->on('uf');
+
+            $table->string('password');
 
             $table->rememberToken();
             $table->timestamps();

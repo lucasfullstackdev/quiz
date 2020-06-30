@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\Http\Services\UserService;
 use DataTables;
 use PDF;
@@ -72,9 +73,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request)
     {
-        //
+        $updated = UserService::update($request->except(['_token', '_method', 'password_confirmation']));
+
+        return back();
     }
 
     /**
