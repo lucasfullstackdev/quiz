@@ -28,8 +28,8 @@
     <section class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-2 p-0 border-right border-secondary bg-dark" style="max-width: 300px;">
-                <nav id="sidebar" style="height: calc(100vh - 60px);">
+            <div class="col-md-2 p-0 border-right border-secondary bg-dark overflow-auto" style="max-width: 300px;">
+                <nav id="sidebar" style="height: calc(100vh - 80px);">
                     <ul class="list-group list-group-flush">
                         @isset($menus)
                             @foreach ($menus as $menu)
@@ -46,7 +46,7 @@
             </div>
             
             <!-- application content -->
-            <div class="col pt-5 pb-5">
+            <div class="col pt-5 pb-5 overflow-auto" style="height: calc(100vh - 80px);">
                 @section('content')
                 @show
             </div>

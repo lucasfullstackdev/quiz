@@ -34,7 +34,6 @@ class CreateUsersTable extends Migration
             $table->string('bairro')->nullable();
             $table->string('complemento')->nullable();
             $table->string('cidade')->nullable();
-
             $table->integer('uf_id')->unsigned()->nullable();
             $table->foreign('uf_id')->references('id')->on('uf');
 
