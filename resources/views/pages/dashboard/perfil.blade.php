@@ -3,11 +3,11 @@
 @section('title', 'Perfil')
 
 @section('content')
-    @if ($errors->any())
+    {{-- @if ($errors->any())
         @foreach ($errors->all() as $error)
             <div class="alert alert-danger">{{ $error }}</div>
         @endforeach
-    @endif
+    @endif --}}
 
     <h2 class="text-left">Perfil do Usuário</h2>
     <hr>
@@ -17,38 +17,14 @@
         @method('put')
 
         <!-- Dados para Contato -->
-        <div class="form-group">
-            <label>Nome Completo:</label>
-            <input type="text" class="form-control" name="name" value="{{ old('name') ?? $user->name }}" placeholder="Informe seu nome completo...">
-        </div>
+        <x-input-text input-name="name" placeholder="Informe seu nome completo" label="Nome Completo" :collection="$user"/>
 
         <div class="form-row">
             <div class="col">
-                <label>E-mail: </label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fa fa-envelope-o"></i>
-                        </div>
-                    </div>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ?? $user->email }}" maxlength="255" placeholder="E-mail...">
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+                <x-input-icon input-name="email" placeholder="E-mail..." label="E-mail:" :collection="$user" type="email" icon="fa fa-envelope-o"/>
             </div>
             <div class="col">
-                <label>Telefone: </label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" name="fone" value="{{  old('fone') ?? $user->fone }}" placeholder="Fone ...">
-                </div>
+                <x-input-icon input-name="fone" placeholder="Fone..." label="Telefone:" :collection="$user" icon="fa fa-phone"/>
             </div>
         </div>
         
@@ -57,39 +33,28 @@
         <h4>Endereço: </h4>
         <hr>
         
-        <div class="form-row">
-            <div class="col-sm-3 mb-2">
-                <label>CEP: </label>
-                <input type="text" class="form-control" name="cep" value="{{  old('cep') ?? $user->cep }}" placeholder="CEP...">
-            </div>
-        </div>
+        <x-input-text input-name="cep" placeholder="CEP..." label="CEP:" :collection="$user" grid="3"/>
 
         <div class="form-row">
-            <div class="col-sm-11 mb-2">
-                <label>Logradouro: </label>
-                <input type="text" class="form-control" name="logradouro" value="{{  old('logradouro') ?? $user->logradouro }}" placeholder="Logradouro...">
+            <div class="col-sm-11">
+                <x-input-text input-name="logradouro" placeholder="Logradouro..." label="Logradouro:" :collection="$user" />
             </div>
-
-            <div class="col-sm-1 mb-2">
-                <label>Nº: </label>
-                <input type="text" class="form-control" name="numero" value="{{  old('numero') ?? $user->numero }}">
+            <div class="col-sm-1">
+                <x-input-text input-name="numero" label="Nº:" :collection="$user" />
             </div>
         </div>
 
         <div class="form-row">
             <div class="col-sm-3 mb-2">
-                <label>Bairro: </label>
-                <input type="text" class="form-control" name="bairro" value="{{  old('bairro') ?? $user->bairro }}" placeholder="Bairro...">
+                <x-input-text input-name="bairro" placeholder="Bairro..." label="Bairro:" :collection="$user" />
             </div>
 
             <div class="col-sm-3 mb-2">
-                <label>Complemento: </label>
-                <input type="text" class="form-control" name="complemento" value="{{  old('complemento') ?? $user->complemento }}" placeholder="Complemento...">
+                <x-input-text input-name="complemento" placeholder="Complemento..." label="Complemento:" :collection="$user" />
             </div>
 
             <div class="col mb-2">
-                <label>Cidade: </label>
-                <input type="text" class="form-control" name="cidade" value="{{  old('cidade') ?? $user->cidade }}" placeholder="Cidade...">
+                <x-input-text input-name="cidade" placeholder="Cidade..." label="Cidade:" :collection="$user" />
             </div>
 
             <div class="col-sm-1 mb-2">

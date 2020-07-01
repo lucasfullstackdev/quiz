@@ -5,7 +5,7 @@
 @section('content')
     @isset($questionario)
             @foreach ($questionario as $pergunta)
-                <x-text-form :perguntaCollection="$pergunta" />
+                <x-questao :perguntaCollection="$pergunta" />
             @endforeach
     @endisset
 @endsection

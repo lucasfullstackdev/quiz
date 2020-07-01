@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class TextForm extends Component
+class Questao extends Component
 {
 
     public $perguntaCollection;
@@ -26,6 +26,6 @@ class TextForm extends Component
      */
     public function render()
     {
-        return view('components.text-form');
+        return view('components.questao');
     }
 }
