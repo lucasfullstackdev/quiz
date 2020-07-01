@@ -33,4 +33,13 @@ class User extends Model
         return date('d/m/Y', strtotime($createdAt));
     }
 
+    public function getWhatsappAttribute($whatsapp)
+    {
+        return "(".substr($whatsapp,0,2).") ". substr($whatsapp, 2, 1) . "." .substr($whatsapp,3,-4)." - ".substr($whatsapp,-4);
+    }
+
+    public function uf()
+    {
+        return $this->belongsTo(\App\Models\Uf::class);
+    }
 }

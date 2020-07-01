@@ -78,6 +78,18 @@ class UserController extends Controller
         $updated = UserService::update($request->except(['_token', '_method']));
         return redirect()->back()->with('alert', $updated);
     }
+    
+    public function print($id)
+    {
+        if (in_array($id, [1, 2]))
+            return null;
+        
+        $user = UserService::find($id);
+
+        return PDF::loadView('prints.perfil', [
+            "user" => $user
+        ])->stream();
+    }
 
     /**
      * Remove the specified resource from storage.

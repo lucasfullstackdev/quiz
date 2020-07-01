@@ -23,7 +23,7 @@
     <script type="text/javascript">
         $(document).ready( function(){
             const button = row => {
-                let route = `historico-respostas/questionario/${row.questionario_id}/user/${row.user_id}/created/${row.created_at}`;
+                let route = `perfil/${row.id}/print`;
                 
                 return `<a href="${route}" class="btn btn-block btn-danger" role="button" target="_blank">
                             <i class="fa fa-file"></i>

@@ -29,4 +29,9 @@ class UserService
         }
     }
 
+    public static function find(Int $id)
+    {
+        return User::find($id);
+    }
+
 }
