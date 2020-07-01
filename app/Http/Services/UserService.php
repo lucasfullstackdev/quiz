@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 use App\Models\User;
+use App\Http\Services\Message;
 
 class UserService
 {
@@ -12,16 +13,15 @@ class UserService
 
     public static function update($userData)
     {
-        if (empty($userData['password'])) {
+        if (empty($userData['password']))
             unset($userData['password']);
-        }
 
         try {
-            return User::find(Auth()->user()->id)->update($userData);
+            User::find(Auth()->user()->id)->update($userData);
+            return Message::success('Registro Salvo com sucesso!');
         } catch (\Throwable $th) {
             
         }
-        
     }
 
 }

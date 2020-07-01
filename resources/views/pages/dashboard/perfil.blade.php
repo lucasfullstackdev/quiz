@@ -3,18 +3,16 @@
 @section('title', 'Perfil')
 
 @section('content')
-    {{-- @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <div class="alert alert-danger">{{ $error }}</div>
-        @endforeach
-    @endif --}}
+    @if (session('alert'))
+        <x-alert :alert="session('alert')" />
+    @endif
 
-    <h2 class="text-left">Perfil do Usuário</h2>
-    <hr>
-
-    <form action="{{ route('dashboard.perfil.update') }}" method="POST">
+    <form action="{{ route('dashboard.perfil.update') }}" method="POST" class="p-4">
         @csrf
         @method('put')
+        
+        <h2 class="text-left">Perfil do Usuário</h2>
+        <hr>
 
         <!-- Dados para Contato -->
         <x-input-text input-name="name" placeholder="Informe seu nome completo" label="Nome Completo" :collection="$user"/>
@@ -69,39 +67,15 @@
 
         <div class="form-row">
             <div class="col">
-                <label>Whatsapp: </label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fa fa-whatsapp"></i>
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" name="whatsapp" value="{{ old('whatsapp') ??  $user->whatsapp }}" placeholder="Whatsapp...">
-                </div>
+                <x-input-icon input-name="whatsapp" placeholder="Whatsapp..." label="Whatsapp:" :collection="$user" icon="fa fa-whatsapp"/>
             </div>
 
             <div class="col">
-                <label>Instagram: </label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fa fa-instagram"></i>
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" name="instagram" value="{{ old('instagram') ?? $user->instagram }}" placeholder="Instagram...">
-                </div>
+                <x-input-icon input-name="instagram" placeholder="Instagram..." label="Instagram:" :collection="$user" icon="fa fa-instagram"/>
             </div>
             
             <div class="col">
-                <label>Facebook: </label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <i class="fa fa-facebook"></i>
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" name="facebook" value="{{ old('facebook') ?? $user->facebook }}" placeholder="Facebook...">
-                </div>
+                <x-input-icon input-name="facebook" placeholder="Facebook..." label="Facebook:" :collection="$user" icon="fa fa-facebook"/>
             </div>
         </div>
 
@@ -128,6 +102,7 @@
         </div>
         
         <br>
+
         <div class="form-row d-flex justify-content-end">
             <div class="col col-md-2">
                 <button type="submit" class="btn btn-block btn-success">Salvar</button>
