@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
+@section('title', 'Informativo')
+
 @section('content')
     
     <div class="container">
         <div class="row">
             <!-- lado esquerdo -->
             <div class="col-sm-12 col-md-5 col-lg-6">
-                <img src="{{ asset('img/info/info-begin.png') }}" alt="" class="img-info">
+                <img src="{{ asset('storage/info/advogado.png') }}" alt="" class="img-info">
             </div>
             
             <!-- lado direito -->

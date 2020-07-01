@@ -26,6 +26,4 @@ mix
     .scripts('node_modules/bootstrap/dist/css/bootstrap.css', 'public/css/bootstrap.css')
     .scripts('resources/css/dev.css', 'public/css/dev.css')
 
-    // dir
-    .copyDirectory('resources/img', 'public/img')
     .version();

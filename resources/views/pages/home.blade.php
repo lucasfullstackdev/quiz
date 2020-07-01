@@ -11,7 +11,7 @@
 </head>
 <style>
     .bg-cover {
-        background-image: url("{{ asset('img/bg-home.jpg') }}");
+        background-image: url("{{ asset('storage/bg-home.jpg') }}");
         background-size: 100%;
     }
 </style>
@@ -21,7 +21,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top border-bottom">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="{{ asset('img/logo.jpg') }}" alt="" class="mr-2">
+                <img src="{{ asset('storage/logo.jpg') }}" alt="" class="mr-2">
                 Quiz
             </a>
             <a href="{{ route('dashboard.index') }}" class="btn btn-success" role="button">Entrar</a>

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quiz | @yield('title')</title>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ url(mix('css/bootstrap.css')) }}">
     <link rel="stylesheet" href="{{ url(mix('css/dev.css')) }}">
 </head>
@@ -15,7 +16,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top border-bottom">
         <div class="container">
             <a class="navbar-brand" href="{{ route('home.index') }}">
-                <img src="{{ asset('img/logo.jpg') }}" alt="" class="mr-2">
+                <img src="{{ asset('storage/logo.jpg') }}" alt="" class="mr-2">
                 Quiz
             </a>
         </div>

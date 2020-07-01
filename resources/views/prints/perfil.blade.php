@@ -23,7 +23,7 @@
     <div id="header">
         <div class="row">
             <div class="col col-sm-2">
-                <img src="{{ public_path('img/logo.jpg') }}" alt="" class="ml-3" width="75" height="75">
+                <img src="{{ public_path('storage/logo.jpg') }}" alt="" class="ml-3" width="75" height="75">
             </div>
             <div class="col col-sm-10">
                 <h1 class="text-center">Perfil do usuário</h1>

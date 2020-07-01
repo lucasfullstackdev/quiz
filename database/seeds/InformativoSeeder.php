@@ -19,6 +19,12 @@ class InformativoSeeder extends Seeder
             [
                 'ds_informativo_view' => "info.questionario-fim"
             ],
+            [
+                'ds_informativo_view' => "info.questionario-sem-direitos-trabalhistas"
+            ],
+            [
+                'ds_informativo_view' => "info.questionario-direitos-trabalhistas"
+            ],
         ];
 
         foreach ($informativos as $informativo) {

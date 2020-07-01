@@ -13,13 +13,14 @@ class UserService
 
     public static function update($userData)
     {
-        if (empty($userData['password']))
-            unset($userData['password']);
-
         if ($userData['password'] !== $userData['password_confirmation'])
             return Message::code(400)->body('Senhas Diferentes')->error();
 
-        $userData['password'] = bcrypt($userData['password']);
+        if (empty($userData['password'])){
+            unset($userData['password']);
+        } else {
+            $userData['password'] = bcrypt($userData['password']);
+        }
         
         try {
             User::find(Auth()->user()->id)->update($userData);
