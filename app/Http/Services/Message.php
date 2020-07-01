@@ -9,14 +9,28 @@ class Message
     private static $type;
     private static $message = [];
 
-    private static $instace;
+    private static $instance;
 
     private static function getInstance()
     {
         if (self::$instance === null)
-            self::$instace = new self;
+            self::$instance = new self;
 
-        return self::$instace;
+        return self::$instance;
+    }
+
+    public static function code($code)
+    {
+        self::$code = $code;
+        
+        return self::getInstance();
+    }
+
+    public static function body($body)
+    {
+        self::$body = $body;
+
+        return self::getInstance();
     }
 
     private static function create()
@@ -35,6 +49,13 @@ class Message
         self::$code = 200;
         self::$body = $body;
         self::$type = 'success';
+
+        return self::create();
+    }
+
+    public static function error()
+    {
+        self::$type = 'danger';
 
         return self::create();
     }

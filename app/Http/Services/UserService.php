@@ -16,6 +16,11 @@ class UserService
         if (empty($userData['password']))
             unset($userData['password']);
 
+        if ($userData['password'] !== $userData['password_confirmation'])
+            return Message::code(400)->body('Senhas Diferentes')->error();
+
+        $userData['password'] = bcrypt($userData['password']);
+        
         try {
             User::find(Auth()->user()->id)->update($userData);
             return Message::success('Registro Salvo com sucesso!');

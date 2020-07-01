@@ -75,9 +75,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request)
     {
-        $updated = UserService::update($request->except(['_token', '_method', 'password_confirmation']));
-
-        // dd($updated);
+        $updated = UserService::update($request->except(['_token', '_method']));
         return redirect()->back()->with('alert', $updated);
     }
 
