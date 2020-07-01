@@ -58,15 +58,7 @@
             </div>
 
             <div class="col-sm-1 mb-2">
-                <label>UF: </label>
-                <select class="custom-select" name="uf" value="{{ $user->uf }}">
-                    <option value="">UF</option>
-                    @isset($uf)
-                        @foreach ($uf as $item)
-                            <option value="{{ $item->id }}">{{ $item->slug }}</option>
-                        @endforeach
-                    @endisset
-                </select>
+                <x-select input-name="uf_id" label="UF:" :collection="$user" table="uf" :nat="['value' => 'id', 'description' => 'slug']"/>
             </div>
         </div>
 
