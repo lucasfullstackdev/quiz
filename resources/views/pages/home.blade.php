@@ -52,7 +52,7 @@
             @isset($questionarios)
                 @foreach ($questionarios as $questionario)
                     <div class="col-sm-12 col-md-6 col-lg-3 pb-3">
-                        <form action="{{ route('info.showbypost') }}" method="post">
+                        <form action="{{ route('info.show') }}" method="post">
                             @csrf
 
                             <input type="hidden" name="informativo_id" value="1" class="hidden">

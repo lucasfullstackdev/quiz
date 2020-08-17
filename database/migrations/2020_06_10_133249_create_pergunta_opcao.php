@@ -24,6 +24,9 @@ class CreatePerguntaOpcao extends Migration
             $table->integer('next_pergunta_id')->unsigned();
             $table->foreign('next_pergunta_id')->references('id')->on('perguntas');
 
+            $table->integer('direito_id')->unsigned()->nullable();
+            $table->foreign('direito_id')->references('id')->on('direitos');
+
             $table->timestamps();
             $table->softDeletes();
         });

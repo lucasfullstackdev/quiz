@@ -24,8 +24,9 @@ class HistoricoRespostaController extends Controller
         } else {
             $historicoRespostas = HistoricoRespostasService::all(Auth::user()->id);
         }
-
+        
         foreach ($historicoRespostas as $historicoResposta) {
+            // $historicoResposta['sky']
             $historicoResposta['created_at_'] = date('d/m/Y', strtotime($historicoResposta['created_at']));
         }
 

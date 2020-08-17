@@ -16,9 +16,25 @@ class HistoricoRespostasService
     private static $respostas;
     private static $instance;
 
+    private static function getSkus()
+    {
+        return HistoricoRespostas::select('sku')->get();
+    }
+
+    public static function generateSKU()
+    {
+        $skus = self::getSkus();
+        
+        do {
+            $sku = uniqid();
+        } while (count($skus->where('sku', $sku)));
+
+        return $sku;
+    }
+
     private static function getInstance()
     {
-        if(self::$instance === null)
+        if (self::$instance === null)
             self::$instance = new self;
 
         return self::$instance;
@@ -49,7 +65,12 @@ class HistoricoRespostasService
             }
         }
 
-       return self::getInstance(); 
+        $sku = self::generateSKU();
+        
+        foreach (self::$dataToSend as $dataKey => $dataValue)
+            self::$dataToSend[ $dataKey ]['sku'] = $sku;
+        
+        return self::getInstance();
     }
 
     // private static function dataToSendIsValid()
@@ -69,10 +90,10 @@ class HistoricoRespostasService
         try {
             foreach (self::$dataToSend as $data)
                 HistoricoRespostas::Create($data);
-            
+
             DB::commit();
             Auth::logout();
-                        
+
             return Message::success("ok", 201)->bind(self::$dataToSend);
         } catch (\Throwable $th) {
             DB::rollback();
@@ -80,29 +101,30 @@ class HistoricoRespostasService
         }
     }
 
-    public static function all($user_id=null){
+    public static function all($user_id = null)
+    {
         $historicoRespostas = HistoricoRespostas::select([
-                                                    'questionario_id',
-                                                    'user_id',
-                                                    'created_at'
-                                                ])
-                                                // ->where('user_id', $user_id)
-                                                ->groupBy([
-                                                    'questionario_id',
-                                                    'user_id',
-                                                    'created_at'
-                                                ])
-                                                ->get();
-                                            
+            'questionario_id',
+            'user_id',
+            'created_at'
+        ])
+            // ->where('user_id', $user_id)
+            ->groupBy([
+                'questionario_id',
+                'user_id',
+                'created_at'
+            ])
+            ->get();
+
         if (isset($user_id)) {
             $historicoRespostas = $historicoRespostas->where('user_id', $user_id);
         }
-        
+
         foreach ($historicoRespostas as $historicoResposta) {
             $historicoResposta['user_name'] = User::find($historicoResposta->user_id)->name;
             $historicoResposta['questionario_description'] = Questionario::find($historicoResposta->questionario_id)->ds_questionario;
         }
-        
+
         return $historicoRespostas;
     }
 
@@ -146,11 +168,11 @@ class HistoricoRespostasService
                              email
                         from users
                     ) as users on users.id = base.user_id",
-                    [
-                        'user_id' => $user_id,
-                        'questionario_id' => $questionario_id,
-                        'created_at' => $created_at
-                    ]
+            [
+                'user_id' => $user_id,
+                'questionario_id' => $questionario_id,
+                'created_at' => $created_at
+            ]
         );
 
         $removeProperties = ['name', 'email', 'created_at'];
@@ -163,7 +185,7 @@ class HistoricoRespostasService
 
             foreach ($removeProperties as $removeProperty)
                 unset($historicoResposta->$removeProperty);
-    
+
             $response['data'][] = [
                 'ds_pergunta' => $historicoResposta->ds_pergunta,
                 'vl_pergunta' => $historicoResposta->vl_pergunta,

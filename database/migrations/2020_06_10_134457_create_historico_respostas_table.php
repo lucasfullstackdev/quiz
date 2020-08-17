@@ -16,6 +16,8 @@ class CreateHistoricoRespostasTable extends Migration
         Schema::create('historico_respostas', function (Blueprint $table) {
             $table->increments('id');
             
+            $table->string('sku');
+
             $table->integer('questionario_id')->unsigned()->nullable();
             $table->foreign('questionario_id')->references('id')->on('questionarios');
 

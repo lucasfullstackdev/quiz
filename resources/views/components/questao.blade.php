@@ -16,6 +16,7 @@
                            data-questionario_id="{{ $perguntaCollection->questionario_id }}"
                            data-pergunta_id="{{ $perguntaCollection->pergunta_id }}"
                            data-pergunta_opcao_id="{{ $opcao->id }}"
+                           data-direito="{{$opcao->direito_id}}"
                     >
                     <label class="form-check-label ml-3 p-3 bg-light border rounded">
                       {{ $opcao->ds_pergunta_opcao }}
@@ -52,6 +53,7 @@
                       data-questionario_id="{{ $perguntaCollection->questionario_id }}"
                       data-pergunta_id="{{ $perguntaCollection->pergunta_id }}"
                       data-pergunta_opcao_id="{{ $opcao->id }}"
+                      data-direito="{{$opcao->direito_id}}"
               >
                 {{ $opcao->ds_pergunta_opcao }}
               </button>

@@ -20,11 +20,16 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('Controle#123'),
                 'remember_token' => Str::random(10)
             ],
-
             [
                 'name' => 'admin',
                 'email' => 'admin@quiz.com.br',
                 'password' => bcrypt('admin@user#2123'),
+                'remember_token' => Str::random(10)
+            ],
+            [
+                'name' => 'primeiro usuário',
+                'email' => 'primeiro@usuario.com.br',
+                'password' => bcrypt('123456789'),
                 'remember_token' => Str::random(10)
             ]
         ];

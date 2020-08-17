@@ -56,7 +56,11 @@
         const controlView = ev => {
             if (dataViewIsInvalidToNextView())
                 return null;
-            
+
+            // Se o usuário saiu do trabalho a mais de dois anos
+            if (currentTargetData.pergunta_opcao_id == 66)
+                window.location.href = `/informativo/3`;
+
             // Adicionar as opção do type checkbox no dataToSubmit ao ir para próxima questão
             if (Object.keys(checkboxTemp).length != 1)
                 dataToSubmit.push(checkboxTemp);
@@ -82,6 +86,26 @@
         let checkboxTemp = {
             pergunta_opcao_id: []
         };
+
+        const redirectToInfo = response => {
+            console.log(response);
+
+            $.ajax({
+                url: '{{ route("info.showWithHistory", ["informativo_id" => 4]) }}',
+                type: 'post',
+                data: {
+                    questionario: response.data,
+                    _token: '{{csrf_token()}}'
+                },
+                success: function(response){
+                    $('body').empty().append(response);
+                },
+                error: function (error){
+
+                }
+            })
+        };
+
 
         $(document).ready( function(){
 
@@ -136,11 +160,9 @@
                         _token: '{{csrf_token()}}'
                     },
                     success: function(response){
-                        console.clear();
-                        console.log(response);
-                        
                         if (response.success == true)
-                            window.location.href = `/informativo/2`;
+                            redirectToInfo(response);
+                            // window.location.href = `/informativo/2`;
                     },
                     error: function(error){
                         console.log('not ok')

@@ -30,7 +30,7 @@
                                     type="email"
                                     class="form-control @error('email') is-invalid @enderror"
                                     name="email"
-                                    value="{{ old('email') }}"
+                                    value="{{ old('email') ?? 'primeiro@usuario.com.br' }}"
                                     placeholder="E-mail ..."
                                     required
                                     autofocus
@@ -50,6 +50,7 @@
                                     class="form-control @error('password') is-invalid @enderror"
                                     name="password"
                                     placeholder="Senha ..."
+                                    value="123456789"
                                     required
                             >
 

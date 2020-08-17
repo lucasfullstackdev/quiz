@@ -21,6 +21,10 @@ class UserAccessLevelSeeder extends Seeder
                 'user_id' => 2,
                 'access_level_id' => 2
             ],
+            [
+                'user_id' => 3,
+                'access_level_id' => 3
+            ]
         ];
 
         foreach ($userAccessLevels as $userAccessLevel) {
