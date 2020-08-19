@@ -10,6 +10,6 @@ class PerguntaOpcao extends Model
     use SoftDeletes;
     
     protected $table = 'pergunta_opcoes';
-    protected $fillable = ['pergunta_id', 'ds_pergunta_opcao', 'next_pergunta_id'];
+    protected $fillable = ['pergunta_id', 'ds_pergunta_opcao', 'next_pergunta_id', 'direito_id'];
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 }

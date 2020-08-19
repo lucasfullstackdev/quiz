@@ -15,22 +15,7 @@ class HistoricoRespostasService
     public static $dataToSend;
     private static $respostas;
     private static $instance;
-
-    private static function getSkus()
-    {
-        return HistoricoRespostas::select('sku')->get();
-    }
-
-    public static function generateSKU()
-    {
-        $skus = self::getSkus();
-        
-        do {
-            $sku = uniqid();
-        } while (count($skus->where('sku', $sku)));
-
-        return $sku;
-    }
+    private static $sku;
 
     private static function getInstance()
     {
@@ -39,6 +24,29 @@ class HistoricoRespostasService
 
         return self::$instance;
     }
+
+    private static function getSkus()
+    {
+        return HistoricoRespostas::select('sku')->get();
+    }
+
+    public static function generateSku()
+    {
+        $skus = self::getSkus();
+        
+        do {
+           self::$sku = uniqid();
+        } while (count($skus->where('sku', self::$sku)));
+
+        return self::$sku;
+    }
+
+    public static function getBySku($sku)
+    {
+        return HistoricoRespostas::where('sku', $sku)->get();
+    }
+
+    
 
     public static function prep($respostas)
     {
@@ -65,10 +73,10 @@ class HistoricoRespostasService
             }
         }
 
-        $sku = self::generateSKU();
+        self::generateSku();
         
         foreach (self::$dataToSend as $dataKey => $dataValue)
-            self::$dataToSend[ $dataKey ]['sku'] = $sku;
+            self::$dataToSend[ $dataKey ]['sku'] = self::$sku;
         
         return self::getInstance();
     }
@@ -94,7 +102,7 @@ class HistoricoRespostasService
             DB::commit();
             Auth::logout();
 
-            return Message::success("ok", 201)->bind(self::$dataToSend);
+            return Message::success("ok", 201)->bind(self::$sku);
         } catch (\Throwable $th) {
             DB::rollback();
             return Message::error($th);

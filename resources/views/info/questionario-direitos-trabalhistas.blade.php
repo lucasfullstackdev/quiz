@@ -20,11 +20,18 @@
                         <h2 class="text-center">Você tem direitos trabalhistas para receber</h2>
 
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Primeiro Direito
-                                <i class="fa fa-check text-success"></i>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            @isset($respostas)
+                                @foreach ($respostas as $resposta)
+                                    @isset($resposta->direito)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ $resposta->direito }}
+                                            <i class="fa fa-check text-success"></i>
+                                        </li>
+                                    @endisset
+                                @endforeach
+                            @endisset
+                            
+                            {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Segundo Direito
                                 <i class="fa fa-check text-success"></i>
                             </li>
@@ -39,7 +46,7 @@
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Espaço reservado para a descrição do direito adquirido, testando um direito com lenght grande
                                 <i class="fa fa-check text-success"></i>
-                            </li>
+                            </li> --}}
                             <hr>
                         </ul>
 

@@ -88,13 +88,11 @@
         };
 
         const redirectToInfo = response => {
-            console.log(response);
-
             $.ajax({
                 url: '{{ route("info.showWithHistory", ["informativo_id" => 4]) }}',
                 type: 'post',
                 data: {
-                    questionario: response.data,
+                    historico_sku: response.data,
                     _token: '{{csrf_token()}}'
                 },
                 success: function(response){

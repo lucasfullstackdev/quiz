@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Services\InformativoService;
-use App\Http\Services\HistoricoRespostasService;
 use Illuminate\Support\Facades\Auth;
+
+use App\Http\Services\DireitoService;
+use App\Http\Services\InformativoService;
+use App\Http\Services\PerguntaOpcaoService;
+use App\Http\Services\HistoricoRespostasService;
 
 class InformativoController extends Controller
 {
@@ -46,7 +49,7 @@ class InformativoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($view, $questionario_id)
+    public function show($view, $questionario_id=null)
     {
         return view($view, [ 'questionario_id' => $questionario_id ]);
     }
@@ -54,13 +57,21 @@ class InformativoController extends Controller
     public function showWithHistory(Request $request, $informativo_id)
     {
         $info = InformativoService::find($informativo_id);
-        $questionario = $request->input('questionario');
+        $respostas = HistoricoRespostasService::getBySku($request->input('historico_sku'));
+        $opcoes = PerguntaOpcaoService::all();
+        $direitos = DireitoService::all();
+        
+        foreach ($respostas as $resposta) {
+            $opcao = $opcoes->find($resposta["pergunta_opcao_id"]);
+            if (!empty($opcao)) {
+                $direito = $direitos->find($opcao['direito_id']);
 
-        // $historico = HistoricoRespostasService::findByQuestionarioAndUser(
-        //     $questionario['questionario_id'],
-        //     $questionario['user_id'],
-        //     date('')
-        // );
+                if (!empty($direito))
+                    $resposta['direito'] = $direito['descricao'];
+            }
+        }
+
+       return view($info['ds_informativo_view'], [ 'respostas' => $respostas ]);
     }
 
     public function showByPost(Request $request)
