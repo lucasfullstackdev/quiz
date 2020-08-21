@@ -16,7 +16,7 @@ class CreateDireitosTable extends Migration
         Schema::create('direitos', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('descricao');
+            $table->text('descricao');
             
             $table->timestamps();
             $table->softDeletes();

@@ -24,7 +24,7 @@
                                 @foreach ($respostas as $resposta)
                                     @isset($resposta->direito)
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            {{ $resposta->direito }}
+                                            <p>{!! $resposta->direito !!}</p>
                                             <i class="fa fa-check text-success"></i>
                                         </li>
                                     @endisset

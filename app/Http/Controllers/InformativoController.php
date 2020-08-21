@@ -49,9 +49,11 @@ class InformativoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($view, $questionario_id=null)
+    public function show($informativo_id, $questionario_id=null)
     {
-        return view($view, [ 'questionario_id' => $questionario_id ]);
+        $info = InformativoService::find($informativo_id);
+        
+        return view($info['ds_informativo_view'], [ 'questionario_id' => $questionario_id ]);
     }
 
     public function showWithHistory(Request $request, $informativo_id)
@@ -77,10 +79,9 @@ class InformativoController extends Controller
     public function showByPost(Request $request)
     {
         $questionario_id = $request->input('questionario_id');
-        $info = InformativoService::find($request->input('informativo_id'));
 
         return $this->show(
-            $info['ds_informativo_view'],
+            $request->input('informativo_id'),
             $questionario_id
         );
     }
