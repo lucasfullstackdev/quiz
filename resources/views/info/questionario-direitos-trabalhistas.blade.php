@@ -17,7 +17,7 @@
             <div class="col-sm-12 col-md-7 col-lg-7">
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-12">
-                        <h2 class="text-center">Você tem direitos trabalhistas para receber</h2>
+                        <h2 class="text-center">Aparentemente você tem direitos trabalhistas para receber</h2>
 
                         <ul class="list-group list-group-flush">
                             @isset($respostas)
@@ -30,23 +30,6 @@
                                     @endisset
                                 @endforeach
                             @endisset
-                            
-                            {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Segundo Direito
-                                <i class="fa fa-check text-success"></i>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Terceiro Direito
-                                <i class="fa fa-check text-success"></i>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Quarto Direito
-                                <i class="fa fa-check text-success"></i>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Espaço reservado para a descrição do direito adquirido, testando um direito com lenght grande
-                                <i class="fa fa-check text-success"></i>
-                            </li> --}}
                             <hr>
                         </ul>
 
