@@ -46,7 +46,7 @@
             let currentView = $(`#${current}`).find('.card');
             let nextView = $(`#${next}`).find('.card');
 
-            currentView.fadeOut("slow", () => {
+            currentView.fadeOut("fast", () => {
                 currentView.toggleClass('d-none'); 
                 nextView.toggleClass('d-none'); 
             });

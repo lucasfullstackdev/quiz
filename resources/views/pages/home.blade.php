@@ -12,6 +12,7 @@
     <meta property="og:image" content="{{ asset('storage/thumbnail.jpg') }}"/>  
     <meta property="og:title" content="Escritório | Quiz"/>  
     <meta property="og:description" content="Descubra de uma maneira simples e fácil se você possui direitos trabalhistas a receber"/>
+    <link rel="shortcut icon" sizes="32x32" href="{{ asset('storage/favicon.ico') }}" />
 </head>
 <style>
     .bg-cover {
