@@ -3,8 +3,6 @@
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
-use Faker\Factory as Faker;
-
 class UserSeeder extends Seeder
 {
     /**
@@ -35,15 +33,6 @@ class UserSeeder extends Seeder
                 'remember_token' => Str::random(10)
             ]
         ];
-
-        $faker = Faker::create();
-        for ($i = 0; $i < 150; $i++) {
-            User::create([
-                'name' => $faker->name,
-                'email' => $faker->unique()->email,
-                'password' => bcrypt('123')
-            ]);
-        }
 
         foreach ($users as $user) {
             User::create($user);

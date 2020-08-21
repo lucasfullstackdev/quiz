@@ -59,7 +59,7 @@
 
             // Se o usuário saiu do trabalho a mais de dois anos
             if ($.inArray(currentTargetData.pergunta_opcao_id, [1, 51, 66, 79]) !== -1)
-                window.location.href = `/informativo/3`;
+                window.location.href = `/public_html/informativo/3`;
 
             // Adicionar as opção do type checkbox no dataToSubmit ao ir para próxima questão
             if (Object.keys(checkboxTemp).length != 1)

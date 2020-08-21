@@ -74,3 +74,4 @@ Route::middleware(['auth'])->group(function () {
 Route::post('/informativo', 'InformativoController@showByPost')->name('info.show');
 Route::post('/informativo/{informativo_id}', 'InformativoController@showWithHistory')->name('info.showWithHistory');
 Route::get('/informativo/{informativo_id}', 'InformativoController@show')->name('info.showbyget');
+
