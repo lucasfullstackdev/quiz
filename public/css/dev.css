@@ -1,0 +1,62 @@
+/* 
+ * +------------------------------------------------------+
+ * | Informativo Inicial ---------------------------------+
+ * +------------------------------------------------------+
+ */
+.jumbotron { margin: 0px; text-align: center; }
+.bg-cover { background-repeat: no-repeat; }
+.jumbotron h2 { color: #fff; }
+
+.jumbotron .col {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+
+
+
+/* Card 
+ * ==============================================
+ */
+
+.card {
+    min-height: 255px;
+    background-color: rgb(245, 245, 245) !important;
+    opacity: 0.8;
+}
+.card a { text-decoration: none; }
+.card img { max-height: 150px; max-width: 150px; }
+
+/* 
+ * +------------------------------------------------------+
+ * | Login -----------------------------------------------+
+ * +------------------------------------------------------+
+ */
+.info .display-4,
+.info h5 { text-align: center; }
+.info .display-4 { font-size: 40px; }
+
+.info h5 { font-weight: lighter; }
+
+/* 
+ * +------------------------------------------------------+
+ * | Informativo Inicial ---------------------------------+
+ * +------------------------------------------------------+
+ */
+.img-info { width: 100%; }
+
+
+@media only screen and (min-width: 300px){
+    .jumbotron { padding-top: 3rem; }
+    .jumbotron .row { height: 20vh; }
+    .jumbotron .header-info { padding-bottom: 3rem; }
+    .jumbotron .header-info h2 { font-size: 28px !important; }
+    .jumbotron .header-info h3 { font-size: 15px !important; }
+}
+
+@media only screen and (min-width: 768px){
+    .jumbotron .row { height: 50vh; }
+    .jumbotron .header-info h2 { font-size: 50px !important; }
+    .jumbotron .header-info h3 { font-size: 25px !important; }
+}
