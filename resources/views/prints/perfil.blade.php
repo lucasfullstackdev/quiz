@@ -40,9 +40,9 @@
         </tr>
         @isset($user)
             <tr>
-                <td><small> {{ $user['name'] }} </small></td>
-                <td><small> {{ $user['email'] }}  </small></td>
-                <td><small> {{ $user['created_at'] }} </small></td>
+                <td><small> {{ $user['name'] ?? '' }} </small></td>
+                <td><small> {{ $user['email'] ?? '' }}  </small></td>
+                <td><small> {{ $user['created_at'] ?? '' }} </small></td>
             </tr>
         @endisset
     </table>
@@ -51,20 +51,20 @@
     <h5 class="text-left">Social</h5>
     <hr class="bg-dark">
     @isset($user)
-        <p><b>Whatsapp: </b>{{ $user['whatsapp'] }}</p>
-        <p><b>Facebook: </b>{{ $user['facebook'] }}</p>
-        <p><b>Instagram: </b>{{ $user['instagram'] }}</p>
+        <p><b>Whatsapp: </b>{{ $user['whatsapp'] ?? '' }}</p>
+        <p><b>Facebook: </b>{{ $user['facebook'] ?? '' }}</p>
+        <p><b>Instagram: </b>{{ $user['instagram'] ?? '' }}</p>
     @endisset
 
     <br>
     <h5 class="text-left">Endereço</h5>
     <hr class="bg-dark">
     @isset($user)
-        <p><b>Logradouro:</b> {{ $user['logradouro'] }}, Nº: {{ $user['numero'] }} - CEP: {{ $user['cep'] }}</p>
-        <p><b>Bairro: </b>{{ $user['bairro'] }}</p>
-        <p><b>Complemento: </b>{{ $user['complemento'] }}</p>
-        <p><b>Cidade: </b>{{ $user['cidade'] }}</p>
-        <p><b>Estado: </b>{{ $user['uf']['titulo'] }}</p>
+        <p><b>Logradouro:</b> {{ $user['logradouro'] ?? '' }}, Nº: {{ $user['numero'] ?? '' }} - CEP: {{ $user['cep'] ?? '' }}</p>
+        <p><b>Bairro: </b>{{ $user['bairro'] ?? '' }}</p>
+        <p><b>Complemento: </b>{{ $user['complemento'] ?? '' }}</p>
+        <p><b>Cidade: </b>{{ $user['cidade'] ?? '' }}</p>
+        <p><b>Estado: </b>{{ $user['uf']['titulo'] ?? '' }}</p>
     @endisset
 
 </body>

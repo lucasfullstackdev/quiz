@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <!-- lado esquerdo -->
-            <div class="col-sm-12 col-md-3 col-lg-3 mb-5">
+            <div class="col-sm-12 col-md-4 col-lg-4">
                 <img src="{{ asset('storage/info/certificate.png') }}" alt="" class="img-info">
             </div>
             
