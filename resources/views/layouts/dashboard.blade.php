@@ -18,7 +18,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top border-bottom">
         <div class="container">
             <a class="navbar-brand" href="{{ route('dashboard.index') }}">
-                <img src="{{ asset('img/logo.jpg') }}" alt="" class="mr-2">
+                <img src="{{ asset('storage/logo.jpg') }}" alt="" class="mr-2">
                 Quiz
             </a>
             <a href="{{ route('logout') }}" class="btn btn-danger">logout</a>

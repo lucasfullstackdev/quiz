@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ url(mix('css/bootstrap.css')) }}">
     <link rel="stylesheet" href="{{ url(mix('css/dev.css')) }}">
+
+    <meta property="og:image" content="{{ asset('storage/logo.jpg') }}"/>  
+    <meta property="og:title" content="Your Title"/>  
+    <meta property="og:description" content="Your description."/>  
 </head>
 <body>
     
